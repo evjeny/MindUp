@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TRPL</string>
+    <string name="ma">Устный счет</string>
+    <string name="result">Результат</string>
+    <string name="next">Вперёд</string>
+    <string name="fals">Неправильно</string>
+    <string name="tru">Правильно</string>
+    <string name="logic">Логика</string>
+    <string name="logic_three">Логика 3</string>
+    <string name="logic_two">Логика 2</string>
+    <string name="num_chain">Цепочка цифр</string>
+    <string name="restart">Рестарт</string>
+    <string name="cutouts">Вырезы</string>
+    <string name="usetimer">Использовать таймер</string>
+    <string name="countdown">Использовать обратный отсчёт</string>
+    <string name="settings">Настройки</string>
+</resources>

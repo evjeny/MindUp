@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.evjeny.mentalarithmetic">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Settings"/>
+        <activity android:name=".MA" android:label="@string/ma"/>
+        <activity android:name=".Logic" android:label="@string/logic"/>
+        <activity android:name=".LogicTwo" android:label="@string/logic_two"/>
+        <activity android:name=".LogicThree" android:label="@string/logic_three"/>
+        <activity android:name=".NumChain" android:label="@string/num_chain"/>
+        <activity android:name=".Parts" android:label="@string/cutouts"/>
+    </application>
+
+</manifest>

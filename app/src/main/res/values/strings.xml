@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TRPL</string>
+    <string name="ma">Mental Arithmetic</string>
+    <string name="result">Result</string>
+    <string name="next">Next</string>
+    <string name="tru">True</string>
+    <string name="fals">False</string>
+    <string name="logic">Logic</string>
+    <string name="logic_two">Logic 2</string>
+    <string name="logic_three">Logic 3</string>
+    <string name="num_chain">Chains of numbers</string>
+    <string name="restart">Restart</string>
+    <string name="cutouts">Cutouts</string>
+    <string name="usetimer">Use timer</string>
+    <string name="countdown">Use countdown</string>
+    <string name="settings">Settings</string>
+</resources>

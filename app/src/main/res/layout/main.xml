@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ma"
+        android:onClick="ma" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logic"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="logic" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logic_two"
+        android:layout_gravity="center_horizontal"
+        android:onClick="logic_two" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logic_three"
+        android:layout_gravity="center_horizontal"
+        android:onClick="logic_three" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/num_chain"
+        android:layout_gravity="center_horizontal"
+        android:onClick="num_chain" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cutouts"
+        android:layout_gravity="center_horizontal"
+        android:onClick="cu" />
+</LinearLayout>
