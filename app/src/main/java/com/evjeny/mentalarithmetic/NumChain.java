@@ -2,9 +2,13 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -15,27 +19,38 @@ import java.util.Random;
 public class NumChain extends Activity {
     TextView one, two;
     EditText nums;
-    //CountDownTimer cdt;
+    CountDownTimer countDownTimer;
+    public int match_count;
+    boolean use_timer, started = false;
     String opaopa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_chain_one);
         initViewer();
-        //60000*2 / 1000
-         /**cdt = new CountDownTimer(120000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
+        if(use_timer) {
+            if (started == false) {
+                started = true;
+                countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        Log.d("timer", "tr: " + millisUntilFinished);
+                    }
 
+                    @Override
+                    public void onFinish() {
+                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ": "
+                                + match_count+"/50", Toast.LENGTH_LONG).show();
+                        NumChain.this.finish();
+                    }
+                }.start();
             }
-
-            @Override
-            public void onFinish() {
-                setContentView(R.layout.num_chain_two);
-            }
-        };
-          //for the future :D
-          **/
+        }
     }
     public void next(View v) {
         //cdt.cancel();
@@ -44,7 +59,8 @@ public class NumChain extends Activity {
     public void nums_ch(View v) {
         String n = nums.getText().toString();
         if(!n.equals("")) {
-            two.setText(getText(R.string.tru)+": "+getMatchCount(opaopa,n));
+            match_count = getMatchCount(opaopa, n);
+            two.setText(getText(R.string.tru)+": "+match_count+"/50");
         }
     }
     public void restart(View v) {

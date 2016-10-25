@@ -15,4 +15,5 @@
     <string name="usetimer">Использовать таймер</string>
     <string name="countdown">Использовать обратный отсчёт</string>
     <string name="settings">Настройки</string>
+    <string name="cutouts_two">Вырезы 2</string>
 </resources>

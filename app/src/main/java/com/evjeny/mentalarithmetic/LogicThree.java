@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,7 +41,6 @@ public class LogicThree extends Activity {
                 countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        Log.d("timer", "tr: " + millisUntilFinished);
                     }
 
                     @Override
@@ -51,7 +49,7 @@ public class LogicThree extends Activity {
                                 + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                         LogicThree.this.finish();
                     }
-                };
+                }.start();
             }
         }
     }

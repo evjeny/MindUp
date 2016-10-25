@@ -2,9 +2,12 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -13,6 +16,7 @@ import java.util.Random;
  */
 public class MA extends Activity {
     EditText result;
+    boolean started=false, use_timer;
     TextView primer, nums;
     Random r;
     public int resul = 0; //Правильный ответ на пример
@@ -26,6 +30,28 @@ public class MA extends Activity {
         primer = (TextView) findViewById(R.id.ma_primer);
         nums = (TextView) findViewById(R.id.ma_nums);
         r = new Random();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
+        if(use_timer) {
+            if (started == false) {
+                started = true;
+                CountDownTimer countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
+                                + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
+                        MA.this.finish();
+                    }
+                }.start();
+            }
+        }
     }
     public String[] generateSum(int max) {
         /**TODO Создает рандомную сумму или разность из 2 чисел, меньше @max

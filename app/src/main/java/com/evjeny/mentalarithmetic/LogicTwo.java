@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ public class LogicTwo extends Activity {
     TextView tvone, tvtwo, tvresult;
     EditText result;
     int tru, fals;
-    String resul;
+    String resul = "";
     Random r = new Random();
     boolean use_timer, started;
     CountDownTimer countDownTimer;
@@ -43,7 +42,6 @@ public class LogicTwo extends Activity {
                 countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        Log.d("timer", "tr: " + millisUntilFinished);
                     }
 
                     @Override
@@ -52,7 +50,7 @@ public class LogicTwo extends Activity {
                                 + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                         LogicTwo.this.finish();
                     }
-                };
+                }.start();
             }
         }
     }

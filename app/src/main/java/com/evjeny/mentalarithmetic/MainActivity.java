@@ -34,6 +34,14 @@ public class MainActivity extends Activity {
         Intent nc = new Intent(this, NumChain.class);
         startActivity(nc);
     }
+    public void cu(View v) {
+        Intent cu = new Intent(this, Cutouts.class);
+        startActivity(cu);
+    }
+    public void cu_two(View v) {
+        Intent cu_two = new Intent(this, CutoutsTwo.class);
+        startActivity(cu_two);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +16,7 @@ import java.util.Random;
  * at 6:52
  */
 public class Logic extends Activity {
+    public static int TIME = 10000;
     TextView tv1,tv2,tv;
     EditText result;
     Random r = new Random();
@@ -44,7 +44,6 @@ public class Logic extends Activity {
                 countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
-                        Log.d("timer", "tr: " + millisUntilFinished);
                     }
 
                     @Override
@@ -53,7 +52,7 @@ public class Logic extends Activity {
                                 + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                         Logic.this.finish();
                     }
-                };
+                }.start();
             }
         }
     }
