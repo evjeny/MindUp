@@ -6,10 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,13 +29,14 @@ public class Cutouts extends Activity {
     ImageButton one, two, three, four, five, six;
     TextView result;
 
-    private int tru, fals;
+    private int tru = 0, fals = 0;
     private String exs = "cutouts/exs",
     ans = "cutouts/ans";
     Random r = new Random();
     AssetManager am;
     private boolean use_timer, started;
-    private CountDownTimer countDownTimer;
+    private CountDownTimer cdt;
+    DialogShower ds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,22 @@ public class Cutouts extends Activity {
         four = (ImageButton) findViewById(R.id.cub_four);
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
+        ds = new DialogShower(getApplicationContext());
         initImgs();
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
+            cdt = new CountDownTimer(Settings.CUTOUTS_TIME, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
+                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
+                    Cutouts.this.finish();
+                }
+            }.start();}
     }
     public void clicked(View v) {
             if(v.getTag().equals("this")) {
@@ -150,5 +168,11 @@ public class Cutouts extends Activity {
             }
         }
         return result;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cdt.cancel();
     }
 }

@@ -49,11 +49,26 @@
         android:layout_gravity="center_horizontal"
         android:onClick="cu" />
 
-    <Button
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cutouts_two"
         android:layout_gravity="center_horizontal"
-        android:onClick="cu_two" />
+        android:gravity="center">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cutouts_two"
+            android:layout_gravity="center_horizontal"
+            android:onClick="cu_two"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="cu_two_info"
+            android:src="@drawable/info" />
+    </LinearLayout>
 </LinearLayout>
 </ScrollView>

@@ -22,7 +22,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="number|numberSigned"
         android:ems="10"
         android:id="@+id/logic_two_result"
         android:layout_gravity="center_horizontal"

@@ -1,6 +1,6 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.*;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +40,11 @@ public class MainActivity extends Activity {
     public void cu_two(View v) {
         Intent cu_two = new Intent(this, CutoutsTwo.class);
         startActivity(cu_two);
+    }
+    public void cu_two_info(View v) {
+        DialogShower ds = new DialogShower(this);
+        ds.showDialogWithOneButton(getString(R.string.cutouts_two),
+        getString(R.string.cu_two_info), getString(R.string.ok), R.drawable.info);
     }
 
     @Override

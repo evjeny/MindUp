@@ -18,7 +18,7 @@ import java.util.Random;
 public class LogicThree extends Activity {
     TextView primer,stat;
     EditText result;
-    public int tru, fals;
+    private int tru = 0, fals = 0;
     public String resul = "";
     Random r = new Random();
     boolean use_timer, started;
@@ -137,5 +137,11 @@ public class LogicThree extends Activity {
     }
     public String vo(int i) {
         return String.valueOf(i);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        countDownTimer.cancel();
     }
 }

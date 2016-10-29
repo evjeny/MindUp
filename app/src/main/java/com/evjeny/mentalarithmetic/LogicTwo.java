@@ -18,7 +18,7 @@ import java.util.Random;
 public class LogicTwo extends Activity {
     TextView tvone, tvtwo, tvresult;
     EditText result;
-    int tru, fals;
+    private int tru = 0, fals = 0;
     String resul = "";
     Random r = new Random();
     boolean use_timer, started;
@@ -131,7 +131,6 @@ public class LogicTwo extends Activity {
         return Integer.valueOf(todo);
     }
     public int menshe(int todo) {
-        //AHAHAHAH MENSHE ALLO
         boolean cool = false;
         int result = 1;
         while (cool==false) {
@@ -142,5 +141,11 @@ public class LogicTwo extends Activity {
             }
         }
         return result;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        countDownTimer.cancel();
     }
 }

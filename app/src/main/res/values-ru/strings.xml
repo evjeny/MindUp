@@ -16,4 +16,7 @@
     <string name="countdown">Использовать обратный отсчёт</string>
     <string name="settings">Настройки</string>
     <string name="cutouts_two">Вырезы 2</string>
+    <string name="cu_two_info">Это бета-версия, иногда изображения находятся рядом с серым прямоугольником. Не расстравивайтесь, если не получается победить.</string>
+    <string name="ok">Хорошо</string>
+    <string name="word_chain">Цепочка слов</string>
 </resources>

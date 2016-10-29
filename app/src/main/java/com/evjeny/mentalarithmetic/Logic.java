@@ -20,7 +20,7 @@ public class Logic extends Activity {
     TextView tv1,tv2,tv;
     EditText result;
     Random r = new Random();
-    public int tru, fals;
+    private int tru = 0, fals = 0;
     public String resul = "";
     boolean use_timer, started=false;
     CountDownTimer countDownTimer;
@@ -159,7 +159,7 @@ public class Logic extends Activity {
         return Integer.valueOf(todo);
     }
     public int menshe(int todo) {
-        //AHAHAHAH MENSHE ALLO
+        //when you znaesh Angliisky
         boolean cool = false;
         int result = 1;
         while (cool==false) {
@@ -170,5 +170,11 @@ public class Logic extends Activity {
             }
         }
         return result;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        countDownTimer.cancel();
     }
 }

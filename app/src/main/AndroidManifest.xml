@@ -21,7 +21,8 @@
         <activity android:name=".LogicThree" android:label="@string/logic_three"/>
         <activity android:name=".NumChain" android:label="@string/num_chain"/>
         <activity android:name=".Cutouts" android:label="@string/cutouts"/>
-        M<activity android:name=".CutoutsTwo" android:label="@string/cutouts_two"/>
+        <activity android:name=".CutoutsTwo" android:label="@string/cutouts_two"/>
+        <activity android:name=".WordChain" android:label="@string/word_chain"/>
     </application>
 
 </manifest>

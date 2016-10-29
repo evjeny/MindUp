@@ -20,8 +20,8 @@ public class MA extends Activity {
     TextView primer, nums;
     Random r;
     public int resul = 0; //Правильный ответ на пример
-    public int tru = 0; //Кол-во правильных ответов на примеры
-    public int fals = 0; //Кол-во неправильных ответов
+    private int tru = 0, fals = 0;
+    CountDownTimer cdt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class MA extends Activity {
         if(use_timer) {
             if (started == false) {
                 started = true;
-                CountDownTimer countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
+                cdt = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
                     }
@@ -114,5 +114,11 @@ public class MA extends Activity {
                 break;
         }
         result.setText("");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cdt.cancel();
     }
 }

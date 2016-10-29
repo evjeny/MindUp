@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,36 +19,38 @@ public class NumChain extends Activity {
     TextView one, two;
     EditText nums;
     CountDownTimer countDownTimer;
-    public int match_count;
-    boolean use_timer, started = false;
+    private int match_count;
+    boolean use_timer, started = false, firstlevel = true;
     String opaopa;
+    CountDownTimer cdt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_chain_one);
         initViewer();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
-        if(use_timer) {
-            if (started == false) {
-                started = true;
-                countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        Log.d("timer", "tr: " + millisUntilFinished);
-                    }
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
+            cdt = new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                }
 
-                    @Override
-                    public void onFinish() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ": "
-                                + match_count+"/50", Toast.LENGTH_LONG).show();
-                        NumChain.this.finish();
-                    }
-                }.start();
-            }
+                @Override
+                public void onFinish() {
+                    initAnswer();
+                    new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            Toast.makeText(getApplicationContext(), getString(R.string.tru) + ": "
+                                    + match_count + "/50", Toast.LENGTH_LONG).show();
+                            NumChain.this.finish();
+                        }
+                    }.start();
+                }
+            }.start();
         }
     }
     public void next(View v) {
@@ -62,9 +63,6 @@ public class NumChain extends Activity {
             match_count = getMatchCount(opaopa, n);
             two.setText(getText(R.string.tru)+": "+match_count+"/50");
         }
-    }
-    public void restart(View v) {
-        initViewer();
     }
     private String createSuperNumber(int length) {
         Random r = new Random();
@@ -96,10 +94,18 @@ public class NumChain extends Activity {
         one = (TextView) findViewById(R.id.num_chain_one_tv);
         opaopa = createSuperNumber(50);
         one.setText(opaopa);
+        firstlevel = true;
     }
     private void initAnswer() {
+        firstlevel = false;
         setContentView(R.layout.num_chain_two);
         nums = (EditText) findViewById(R.id.num_chain_et);
         two = (TextView) findViewById(R.id.num_chain_two_tv);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        cdt.cancel();
     }
 }

@@ -5,4 +5,5 @@
         android:summary="@string/countdown"
         android:key="countdown"
         android:defaultValue="false" />
+    <!--Добавь сюда списки с максимальными значениями-->
 </PreferenceScreen>
