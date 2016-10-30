@@ -102,10 +102,4 @@ public class NumChain extends Activity {
         nums = (EditText) findViewById(R.id.num_chain_et);
         two = (TextView) findViewById(R.id.num_chain_two_tv);
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        cdt.cancel();
-    }
 }

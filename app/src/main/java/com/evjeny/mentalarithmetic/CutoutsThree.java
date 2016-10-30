@@ -1,11 +1,11 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -15,26 +15,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
- * Created by Evjeny on 22.10.2016.
- * at 17:16
+ * Created by Evjeny on 30.10.2016.
+ * at 10:09
  */
-public class Cutouts extends Activity {
+public class CutoutsThree extends Activity {
     ImageView main;
     ImageButton one, two, three, four, five, six;
     TextView result;
-
     private int tru = 0, fals = 0;
-    private String exs = "cutouts/exs",
-    ans = "cutouts/ans";
+    private String ans = root()+"/cutouts/ans",
+    exs = root()+"/cutouts/exs";
     Random r = new Random();
-    AssetManager am;
     private boolean use_timer, started;
     private CountDownTimer cdt;
     DialogShower ds;
@@ -47,7 +51,6 @@ public class Cutouts extends Activity {
         setContentView(R.layout.cu);
         main = (ImageView) findViewById(R.id.cu_main);
         result = (TextView) findViewById(R.id.cu_result);
-        am = this.getResources().getAssets();
         one = (ImageButton) findViewById(R.id.cub_one);
         two = (ImageButton) findViewById(R.id.cub_two);
         three = (ImageButton) findViewById(R.id.cub_three);
@@ -55,6 +58,11 @@ public class Cutouts extends Activity {
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
         ds = new DialogShower(getApplicationContext());
+        try {
+            unzip(new File(root()+"/cutouts/additional.zip"), new File(root()+"/cutouts/"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         h = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -64,7 +72,7 @@ public class Cutouts extends Activity {
                 int btodo = b.getInt("this");
                 setThisTag(btodo);
                 for(int i = 0; i<files.length; i++) {
-                    Bitmap bmp = fs(amOpen(files[i]));
+                    Bitmap bmp = fromPath(files[i]);
                     setSrc(i, bmp);
                 }
             }
@@ -81,17 +89,17 @@ public class Cutouts extends Activity {
                 public void onFinish() {
                     Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
                             + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    Cutouts.this.finish();
+                    CutoutsThree.this.finish();
                 }
             }.start();}
     }
     public void clicked(View v) {
-            if(v.getTag().equals("this")) {
-                tru+=1;
-            } else {
-                fals+=1;
-            }
-            initImgs();
+        if(v.getTag().equals("this")) {
+            tru+=1;
+        } else {
+            fals+=1;
+        }
+        initImgs();
         showResult();
     }
 
@@ -100,12 +108,12 @@ public class Cutouts extends Activity {
             @Override
             public void run() {
                 String[] result = new String[7];
-                String[] files = amList("cutouts/ans");
+                String[] files = filesFromSd(root(), "/cutouts/ans");
                 String f = files[r.nextInt(files.length)];
                 result[6] = exs+"/"+f;
                 int btodo = r.nextInt(6);
                 result[btodo] = ans+"/"+f;
-                List<String> newp = amListWithout(ans, f);
+                List<String> newp = amListWithout("ans", f);
                 for(int i = 0; i<6; i++) {
                     if(i!=btodo) {
                         result[i] = ans+"/"+newp.get(r.nextInt(newp.size()));
@@ -151,7 +159,10 @@ public class Cutouts extends Activity {
     }
     private void showResult() {
         result.setText(getString(R.string.tru)+": "+tru+
-        "\n"+getString(R.string.fals)+": "+fals);
+                "\n"+getString(R.string.fals)+": "+fals);
+    }
+    private Bitmap fromPath(String path) {
+        return BitmapFactory.decodeFile(path);
     }
     private void setThisTag(int count) {
         switch (count) {
@@ -187,33 +198,63 @@ public class Cutouts extends Activity {
                 main.setImageBitmap(todo);
         }
     }
-    private String[] amList(String path) {
-        try {
-            return am.list(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+    private String[] filesFromSd(File root, String dir_name) {
+        File s = new File(root+File.separator+dir_name);
+        return  s.list();
     }
-    private Bitmap fs(InputStream is) {
-        return BitmapFactory.decodeStream(is);
-    }
-    private InputStream amOpen(String path) {
-        try {
-            return am.open(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+    private File root() {
+        String rootka;
+        if(exists("/sdcard/")) {
+            rootka = "/sdcard/";
+        } if(exists("/storage/sdcard0/")) {
+            rootka = "/storage/sdcard0/";
+        } if(exists("/storage/sdcard1/")) {
+            rootka = "/sdcard1/";
+        } if(exists("/storage/extSdCard/")) {
+            rootka = "/storage/extSdCard/";
         }
+        return Environment.getExternalStorageDirectory();
+    }
+    private boolean exists(String path) {
+        if(new File(path).exists()) return true;
+        else return false;
     }
     private List<String> amListWithout(String path, String out) {
         List<String> result = new ArrayList<>();
-        String[] base = amList(path);
+        String[] base = filesFromSd(root(), "/cutouts/"+path);
         for(int i = 0; i <base.length; i++) {
             if(!base[i].equals(out)) {
                 result.add(base[i]);
             }
         }
         return result;
+    }
+    public static void unzip(File zipFile, File targetDirectory) throws IOException {
+        //Thx http://stackoverflow.com/users/995891/zapl for his code
+        ZipInputStream zis = new ZipInputStream(
+                new BufferedInputStream(new FileInputStream(zipFile)));
+        try {
+            ZipEntry ze;
+            int count;
+            byte[] buffer = new byte[8192];
+            while ((ze = zis.getNextEntry()) != null) {
+                File file = new File(targetDirectory, ze.getName());
+                File dir = ze.isDirectory() ? file : file.getParentFile();
+                if (!dir.isDirectory() && !dir.mkdirs())
+                    throw new FileNotFoundException("Failed to ensure directory: " +
+                            dir.getAbsolutePath());
+                if (ze.isDirectory())
+                    continue;
+                FileOutputStream fout = new FileOutputStream(file);
+                try {
+                    while ((count = zis.read(buffer)) != -1)
+                        fout.write(buffer, 0, count);
+                } finally {
+                    fout.close();
+                }
+            }
+        } finally {
+            zis.close();
+        }
     }
 }

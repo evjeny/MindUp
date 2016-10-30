@@ -115,10 +115,4 @@ public class MA extends Activity {
         }
         result.setText("");
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        cdt.cancel();
-    }
 }

@@ -142,10 +142,4 @@ public class LogicTwo extends Activity {
         }
         return result;
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        countDownTimer.cancel();
-    }
 }

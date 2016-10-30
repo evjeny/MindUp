@@ -65,9 +65,30 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="cu_two_info"
+            android:src="@drawable/info" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cutouts_three"
+            android:layout_weight="1"
+            android:onClick="cu_three"
+            android:id="@+id/cu_three_button" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="cu_three_info"
             android:src="@drawable/info" />
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TRPL</string>
+    <string name="app_name">MindUp</string>
     <string name="ma">Устный счет</string>
     <string name="result">Результат</string>
     <string name="next">Вперёд</string>
@@ -19,4 +19,10 @@
     <string name="cu_two_info">Это бета-версия, иногда изображения находятся рядом с серым прямоугольником. Не расстравивайтесь, если не получается победить.</string>
     <string name="ok">Хорошо</string>
     <string name="word_chain">Цепочка слов</string>
+    <string name="back">Назад</string>
+    <string name="w_ch_size">Слова в цепочке</string>
+    <string name="set_max_size">Задать максимальное значение</string>
+    <string name="cutouts_three">Вырезы 3</string>
+    <string name="cu_three_info_po">Скачайте файл "additional.zip" из Dropbox - https://www.dropbox.com/s/v1y624w07b6c2mj/additional.zip?dl=1</string>
+    <string name="cu_three_info_pt">Поместите его в папку "/корневая папка/cutouts/" и перезапустите приложение.</string>
 </resources>

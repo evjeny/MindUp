@@ -6,12 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
+import java.io.File;
 
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Button cu_three_button = (Button) findViewById(R.id.cu_three_button);
+        cu_three_button.setEnabled(false);
+        if(new File("/sdcard/cutouts/additional.zip").exists()) {
+            cu_three_button.setEnabled(true);
+        }
     }
     public void ma(View view) {
         Intent ma = new Intent(this, MA.class);
@@ -45,6 +53,14 @@ public class MainActivity extends Activity {
         DialogShower ds = new DialogShower(this);
         ds.showDialogWithOneButton(getString(R.string.cutouts_two),
         getString(R.string.cu_two_info), getString(R.string.ok), R.drawable.info);
+    }
+    public void cu_three(View v) {
+        Intent cu_three = new Intent(this, CutoutsThree.class);
+        startActivity(cu_three);
+    }
+    public void cu_three_info(View v) {
+        Intent info = new Intent(this, CutoutsThreeInfo.class);
+        startActivity(info);
     }
 
     @Override

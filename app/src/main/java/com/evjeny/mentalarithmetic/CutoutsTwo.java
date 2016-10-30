@@ -122,10 +122,4 @@ public class CutoutsTwo extends Activity {
                 six.setImageBitmap(todo);
         }
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        cdt.cancel();
-    }
 }

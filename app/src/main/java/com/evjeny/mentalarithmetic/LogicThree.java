@@ -138,10 +138,4 @@ public class LogicThree extends Activity {
     public String vo(int i) {
         return String.valueOf(i);
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        countDownTimer.cancel();
-    }
 }
