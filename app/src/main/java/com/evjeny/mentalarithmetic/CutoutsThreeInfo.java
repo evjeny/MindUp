@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.widget.TextView;
 
 /**
@@ -15,6 +16,7 @@ public class CutoutsThreeInfo extends Activity {
         setContentView(R.layout.cu_three_info);
         TextView tv = (TextView) findViewById(R.id.cu_three_info_tv);
         tv.setText(getString(R.string.cu_three_info_po)+"\n"+
-        getString(R.string.cu_three_info_pt));
+        getString(R.string.cu_three_info_pt)+" "+ Environment.getExternalStorageDirectory()
+                +"/cutouts/ "+getString(R.string.cu_three_info_pth));
     }
 }

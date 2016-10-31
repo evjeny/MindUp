@@ -32,18 +32,17 @@ import java.util.zip.ZipInputStream;
  * at 10:09
  */
 public class CutoutsThree extends Activity {
-    ImageView main;
-    ImageButton one, two, three, four, five, six;
-    TextView result;
+    private ImageView main;
+    private ImageButton one, two, three, four, five, six;
+    private TextView result;
     private int tru = 0, fals = 0;
     private String ans = root()+"/cutouts/ans",
     exs = root()+"/cutouts/exs";
-    Random r = new Random();
+    private Random r = new Random();
     private boolean use_timer, started;
     private CountDownTimer cdt;
-    DialogShower ds;
 
-    Handler h;
+    private Handler h;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,6 @@ public class CutoutsThree extends Activity {
         four = (ImageButton) findViewById(R.id.cub_four);
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
-        ds = new DialogShower(getApplicationContext());
         try {
             unzip(new File(root()+"/cutouts/additional.zip"), new File(root()+"/cutouts/"));
         } catch (IOException e) {

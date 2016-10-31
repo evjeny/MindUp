@@ -16,13 +16,13 @@ import java.util.Random;
  * at 16:26
  */
 public class LogicTwo extends Activity {
-    TextView tvone, tvtwo, tvresult;
-    EditText result;
+    private TextView tvone, tvtwo, tvresult;
+    private EditText result;
     private int tru = 0, fals = 0;
-    String resul = "";
-    Random r = new Random();
-    boolean use_timer, started;
-    CountDownTimer countDownTimer;
+    private String resul = "";
+    private Random r = new Random();
+    private boolean use_timer, started;
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +85,7 @@ public class LogicTwo extends Activity {
                 break;
         }
     }
-    public String[] generateSmth(String first) {
+    private String[] generateSmth(String first) {
         String[] result = new String[3];
         if(first.equals("+")) {
             int one = r.nextInt(500)+1;
@@ -104,7 +104,7 @@ public class LogicTwo extends Activity {
         }
         return result;
     }
-    public int sumOfCharArr(char[] chars) {
+    private int sumOfCharArr(char[] chars) {
         String[] result = new String[chars.length];
         for(int i = 0; i< chars.length; i++) {
             result[i] = String.valueOf(chars[i]);
@@ -116,21 +116,13 @@ public class LogicTwo extends Activity {
         }
         return resultt;
     }
-    public int sumOfChars(char[] arr) {
-        int result = 0;
-        for(int i = 0; i<arr.length; i++) {
-            int now = Integer.valueOf(arr[i]);
-            result += now;
-        }
-        return result;
-    }
-    public String vo(int todo) {
+    private String vo(int todo) {
         return String.valueOf(todo);
     }
-    public int vo(String todo) {
+    private int vo(String todo) {
         return Integer.valueOf(todo);
     }
-    public int menshe(int todo) {
+    private int menshe(int todo) {
         boolean cool = false;
         int result = 1;
         while (cool==false) {

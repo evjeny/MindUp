@@ -45,6 +45,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/word_chain"
+        android:layout_gravity="center_horizontal"
+        android:onClick="word_chain" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/cutouts"
         android:layout_gravity="center_horizontal"
         android:onClick="cu" />

@@ -16,13 +16,13 @@ import java.util.Random;
  * at 21:20
  */
 public class LogicThree extends Activity {
-    TextView primer,stat;
-    EditText result;
+    private TextView primer,stat;
+    private EditText result;
     private int tru = 0, fals = 0;
     public String resul = "";
-    Random r = new Random();
-    boolean use_timer, started;
-    CountDownTimer countDownTimer;
+    private Random r = new Random();
+    private boolean use_timer, started;
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +82,14 @@ public class LogicThree extends Activity {
                 break;
         }
     }
-    public void fillWithoutLast(String[] todo) {
+    private  void fillWithoutLast(String[] todo) {
         primer.setText("");
         for(int i = 0; i<(todo.length-1); i++ ) {
             primer.setText(primer.getText().toString()+todo[i]+" ");
         }
         resul = todo[todo.length-1];
     }
-    public String[] generateFirst() {
+    private  String[] generateFirst() {
         String[] result = new String[4];
         int one = r.nextInt(50)+1;
         int interval = r.nextInt(15)+5;
@@ -102,7 +102,7 @@ public class LogicThree extends Activity {
         result[3]=vo(four);
         return result;
     }
-    public String[] generateSecond() {
+    private  String[] generateSecond() {
         String[] result = new String[5];
         int n;
         int interval = r.nextInt(15)+5;
@@ -123,7 +123,7 @@ public class LogicThree extends Activity {
         result[4]=vo(five);
         return result;
     }
-    public String[] generateThird() {
+    private  String[] generateThird() {
         String[] result = new String[4];
         int one = r.nextInt(20)+1;
         int two = one*2;
@@ -135,7 +135,7 @@ public class LogicThree extends Activity {
         result[3]=vo(four);
         return result;
     }
-    public String vo(int i) {
+    private  String vo(int i) {
         return String.valueOf(i);
     }
 }

@@ -15,13 +15,13 @@ import java.util.Random;
  * Created by Евгений on 29.09.2016.
  */
 public class MA extends Activity {
-    EditText result;
-    boolean started=false, use_timer;
-    TextView primer, nums;
-    Random r;
-    public int resul = 0; //Правильный ответ на пример
+    private EditText result;
+    private boolean started=false, use_timer;
+    private TextView primer, nums;
+    private Random r;
+    private int resul = 0; //Правильный ответ на пример
     private int tru = 0, fals = 0;
-    CountDownTimer cdt;
+    private CountDownTimer cdt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class MA extends Activity {
             }
         }
     }
-    public String[] generateSum(int max) {
+    private String[] generateSum(int max) {
         /**TODO Создает рандомную сумму или разность из 2 чисел, меньше @max
          * В нулевой ячейке находится первое число, во второй - второе,
          * в третьей лежит ответ, а в четвёртой - знак (+ или -)
@@ -79,7 +79,7 @@ public class MA extends Activity {
                 return result;
         }
     }
-    public String[] generateMult(int max) {
+    private String[] generateMult(int max) {
         /**TODO Создает рандомное произведение (a<max)*11
          * В нулевой ячейке находится первое число, во второй - результат
          */

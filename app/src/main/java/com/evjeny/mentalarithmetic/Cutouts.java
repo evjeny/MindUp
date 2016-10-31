@@ -26,20 +26,19 @@ import java.util.Random;
  * at 17:16
  */
 public class Cutouts extends Activity {
-    ImageView main;
-    ImageButton one, two, three, four, five, six;
-    TextView result;
+    private ImageView main;
+    private ImageButton one, two, three, four, five, six;
+    private TextView result;
 
     private int tru = 0, fals = 0;
     private String exs = "cutouts/exs",
     ans = "cutouts/ans";
-    Random r = new Random();
-    AssetManager am;
+    private Random r = new Random();
+    private AssetManager am;
     private boolean use_timer, started;
     private CountDownTimer cdt;
-    DialogShower ds;
 
-    Handler h;
+    private Handler h;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,6 @@ public class Cutouts extends Activity {
         four = (ImageButton) findViewById(R.id.cub_four);
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
-        ds = new DialogShower(getApplicationContext());
         h = new Handler() {
             @Override
             public void handleMessage(Message msg) {

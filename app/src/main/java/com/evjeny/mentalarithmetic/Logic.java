@@ -16,14 +16,13 @@ import java.util.Random;
  * at 6:52
  */
 public class Logic extends Activity {
-    public static int TIME = 10000;
-    TextView tv1,tv2,tv;
-    EditText result;
-    Random r = new Random();
+    private TextView tv1,tv2,tv;
+    private EditText result;
+    private Random r = new Random();
     private int tru = 0, fals = 0;
-    public String resul = "";
-    boolean use_timer, started=false;
-    CountDownTimer countDownTimer;
+    private  String resul = "";
+    private boolean use_timer, started=false;
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +101,7 @@ public class Logic extends Activity {
                 break;
         }
     }
-    public String[] generateSmth(String first, String second) {
+    private  String[] generateSmth(String first, String second) {
         /** first - знак между числами в скобках
          * second - знак между числами за скобками
          **/
@@ -152,13 +151,13 @@ public class Logic extends Activity {
         }
         return result;
     }
-    public String vo(int todo) {
+    private  String vo(int todo) {
         return String.valueOf(todo);
     }
-    public int vo(String todo) {
+    private  int vo(String todo) {
         return Integer.valueOf(todo);
     }
-    public int menshe(int todo) {
+    private  int menshe(int todo) {
         //when you znaesh Angliisky
         boolean cool = false;
         int result = 1;

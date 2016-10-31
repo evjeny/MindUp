@@ -62,6 +62,10 @@ public class MainActivity extends Activity {
         Intent info = new Intent(this, CutoutsThreeInfo.class);
         startActivity(info);
     }
+    public void word_chain(View v) {
+        Intent words = new Intent(this, WordChain.class);
+        startActivity(words);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

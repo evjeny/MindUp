@@ -16,13 +16,13 @@ import java.util.Random;
  * at 19:11
  */
 public class NumChain extends Activity {
-    TextView one, two;
-    EditText nums;
-    CountDownTimer countDownTimer;
+    private TextView one, two;
+    private EditText nums;
+    private CountDownTimer countDownTimer;
     private int match_count;
-    boolean use_timer, started = false, firstlevel = true;
-    String opaopa;
-    CountDownTimer cdt;
+    private boolean use_timer, started = false, firstlevel = true;
+    private String opaopa;
+    private CountDownTimer cdt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

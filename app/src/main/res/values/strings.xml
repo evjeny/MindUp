@@ -38,5 +38,6 @@
     <string name="set_max_size">Set max value</string>
     <string name="cutouts_three">Cutouts 3</string>
     <string name="cu_three_info_po">Download file "additional.zip" from Dropbox - https://www.dropbox.com/s/v1y624w07b6c2mj/additional.zip?dl=1</string>
-    <string name="cu_three_info_pt">Place it in the directory "/root directory/cutouts/" and restart app.</string>
+    <string name="cu_three_info_pt">Place it in the directory </string>
+    <string name="cu_three_info_pth">and restart app.</string>
 </resources>
