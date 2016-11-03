@@ -1,11 +1,13 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +20,12 @@ import java.util.Random;
 public class NumChain extends Activity {
     private TextView one, two;
     private EditText nums;
+    private ProgressBar pb1, pb2;
     private CountDownTimer countDownTimer;
-    private int match_count;
-    private boolean use_timer, started = false, firstlevel = true;
+    private int match_count, part = Settings.NUM_CHAIN_TIME/100;
     private String opaopa;
-    private CountDownTimer cdt;
+    private boolean inited = false;
+    private CountDownTimer cdt = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,10 @@ public class NumChain extends Activity {
             cdt = new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
+                    pb1.setProgress((int)millisUntilFinished/part);
+                    if(millisUntilFinished<10000) {
+                        setTitle(""+millisUntilFinished/1000);
+                    }
                 }
 
                 @Override
@@ -40,6 +47,10 @@ public class NumChain extends Activity {
                     new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
+                            pb2.setProgress((int)millisUntilFinished/part);
+                            if(millisUntilFinished<10000) {
+                                setTitle(""+millisUntilFinished/1000);
+                            }
                         }
 
                         @Override
@@ -50,7 +61,20 @@ public class NumChain extends Activity {
                         }
                     }.start();
                 }
-            }.start();
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.num_chain), getString(R.string.nc_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
         }
     }
     public void next(View v) {
@@ -92,14 +116,21 @@ public class NumChain extends Activity {
     private void initViewer() {
         setContentView(R.layout.num_chain_one);
         one = (TextView) findViewById(R.id.num_chain_one_tv);
+        pb1 = (ProgressBar) findViewById(R.id.nc_one_pb);
         opaopa = createSuperNumber(50);
         one.setText(opaopa);
-        firstlevel = true;
+        inited = false;
     }
     private void initAnswer() {
-        firstlevel = false;
+        inited = true;
         setContentView(R.layout.num_chain_two);
         nums = (EditText) findViewById(R.id.num_chain_et);
         two = (TextView) findViewById(R.id.num_chain_two_tv);
+        pb2 = (ProgressBar) findViewById(R.id.nc_two_pb);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

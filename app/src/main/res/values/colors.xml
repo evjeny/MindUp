@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_color_end">#3e3860</color>
-    <color name="bg_color_start">#c5c2d4</color>
-    <!--normal button-->
-    <color name="button_color_top">#4f6cd4</color>
-    <color name="button_color_bot">#3051c7</color>
-    <!--pressed-->
-    <color name="button_color_top_pressed">#3b5fe1</color>
-    <color name="button_color_bot_pressed">#1b338b</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="bg_color_end">#130179</color>
+    <color name="bg_color_start">#96c4e7</color>
+
+    <color name="bg_color_red_end">#9f0300</color>
+    <color name="bg_color_red_start">#dabebe</color>
 </resources>

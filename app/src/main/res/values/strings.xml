@@ -40,4 +40,10 @@
     <string name="cu_three_info_po">Download file "additional.zip" from Dropbox - https://www.dropbox.com/s/v1y624w07b6c2mj/additional.zip?dl=1</string>
     <string name="cu_three_info_pt">Place it in the directory </string>
     <string name="cu_three_info_pth">and restart app.</string>
+    <string name="cu_info">Pick part of the main image from 6 variants.</string>
+    <string name="ma_info">Count answer and put it into text field.</string>
+    <string name="nc_info">Remember all numbers and put them into text field.</string>
+    <string name="app">App</string>
+    <string name="hints">Hints</string>
+    <string name="show_hints">Show hints</string>
 </resources>

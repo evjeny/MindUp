@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ma_pb" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ma_nums"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="30dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -10,25 +22,28 @@
         android:id="@+id/ma_primer"
         android:textSize="40sp" />
 
-    <EditText
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number|numberSigned|numberDecimal"
-        android:ems="10"
-        android:id="@+id/ma_result"
-        android:layout_gravity="center_horizontal"
-        android:hint="@string/result" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:layout_gravity="center_horizontal"
-        android:onClick="next" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number|numberSigned|numberDecimal"
+            android:ems="10"
+            android:id="@+id/ma_result"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/result"
+            android:layout_weight="1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ma_nums"
-        android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:layout_gravity="center_horizontal"
+            android:onClick="next"
+            android:layout_weight="2" />
+    </LinearLayout>
+
 </LinearLayout>

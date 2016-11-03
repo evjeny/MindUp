@@ -1,6 +1,7 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +37,12 @@ public class CutoutsThree extends Activity {
     private ImageView main;
     private ImageButton one, two, three, four, five, six;
     private TextView result;
-    private int tru = 0, fals = 0;
+    private ProgressBar pb;
+    private int tru = 0, fals = 0, part = Settings.CUTOUTS_TIME / 100;
     private String ans = root()+"/cutouts/ans",
     exs = root()+"/cutouts/exs";
     private Random r = new Random();
-    private boolean use_timer, started;
-    private CountDownTimer cdt;
+    private CountDownTimer cdt = null;
 
     private Handler h;
 
@@ -56,6 +58,7 @@ public class CutoutsThree extends Activity {
         four = (ImageButton) findViewById(R.id.cub_four);
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
+        pb = (ProgressBar) findViewById(R.id.cu_pb);
         try {
             unzip(new File(root()+"/cutouts/additional.zip"), new File(root()+"/cutouts/"));
         } catch (IOException e) {
@@ -80,7 +83,10 @@ public class CutoutsThree extends Activity {
             cdt = new CountDownTimer(Settings.CUTOUTS_TIME, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-
+                    pb.setProgress((int) millisUntilFinished / part);
+                    if (millisUntilFinished < 10000) {
+                        setTitle("" + millisUntilFinished / 1000);
+                    }
                 }
 
                 @Override
@@ -89,7 +95,21 @@ public class CutoutsThree extends Activity {
                             + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                     CutoutsThree.this.finish();
                 }
-            }.start();}
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.cutouts_three), getString(R.string.cu_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
+        }
     }
     public void clicked(View v) {
         if(v.getTag().equals("this")) {
@@ -254,5 +274,10 @@ public class CutoutsThree extends Activity {
         } finally {
             zis.close();
         }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

@@ -32,13 +32,13 @@ public class DialogShower {
         dialog.show();
     }
     public void showDialogWithOneButton(String title, String message, String buttonText,
-        int iconResId, DialogInterface.OnClickListener onClickListener, DialogInterface.OnCancelListener onCancelListener) {
+        int iconResId, DialogInterface.OnClickListener onClickListener) {
         //Что же делает эта функция?
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setNegativeButton(buttonText, onClickListener);
-        builder.setOnCancelListener(onCancelListener);
+        builder.setCancelable(false);
         if(iconResId!=0) {
             builder.setIcon(iconResId);
         }

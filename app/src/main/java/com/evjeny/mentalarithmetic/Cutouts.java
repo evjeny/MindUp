@@ -1,6 +1,7 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,14 +32,15 @@ public class Cutouts extends Activity {
     private ImageView main;
     private ImageButton one, two, three, four, five, six;
     private TextView result;
+    private LinearLayout root;
+    private ProgressBar pb;
 
-    private int tru = 0, fals = 0;
+    private int tru = 0, fals = 0, part = Settings.CUTOUTS_TIME/100;
     private String exs = "cutouts/exs",
     ans = "cutouts/ans";
     private Random r = new Random();
     private AssetManager am;
-    private boolean use_timer, started;
-    private CountDownTimer cdt;
+    private CountDownTimer cdt = null;
 
     private Handler h;
 
@@ -46,6 +50,7 @@ public class Cutouts extends Activity {
         setContentView(R.layout.cu);
         main = (ImageView) findViewById(R.id.cu_main);
         result = (TextView) findViewById(R.id.cu_result);
+        root = (LinearLayout) findViewById(R.id.cu_root);
         am = this.getResources().getAssets();
         one = (ImageButton) findViewById(R.id.cub_one);
         two = (ImageButton) findViewById(R.id.cub_two);
@@ -53,6 +58,7 @@ public class Cutouts extends Activity {
         four = (ImageButton) findViewById(R.id.cub_four);
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
+        pb = (ProgressBar) findViewById(R.id.cu_pb);
         h = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -72,7 +78,10 @@ public class Cutouts extends Activity {
             cdt = new CountDownTimer(Settings.CUTOUTS_TIME, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-
+                    pb.setProgress((int)millisUntilFinished/part);
+                    if(millisUntilFinished<10000) {
+                        setTitle(""+millisUntilFinished/1000);
+                    }
                 }
 
                 @Override
@@ -81,7 +90,21 @@ public class Cutouts extends Activity {
                             + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                     Cutouts.this.finish();
                 }
-            }.start();}
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.cutouts), getString(R.string.cu_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
+        }
     }
     public void clicked(View v) {
             if(v.getTag().equals("this")) {
@@ -120,25 +143,6 @@ public class Cutouts extends Activity {
         Thread t = new Thread(runnable);
         t.start();
     }
-
-    /**working code:
-     * clearIBTags();
-     String[] files = amList("cutouts/ans");
-     String f = files[r.nextInt(files.length)];
-     main.setImageBitmap(fs(amOpen(exs+ File.separator+f)));
-     Bitmap current = fs(amOpen(ans+File.separator+f));
-     int btodo = r.nextInt(6);
-     setSrc(btodo, current);
-     setThisTag(btodo);
-     List<String> newp = amListWithout(ans, f);
-     for(int i = 0; i<6; i++) {
-     if(i!=btodo) {
-     setSrc(i, fs(amOpen(ans+File.separator+newp.get(r.nextInt(newp.size())))));
-     } else {
-     setSrc(i, current);
-     }
-     }
-     */
     private void clearIBTags() {
         one.setTag("null");
         two.setTag("null");
@@ -213,5 +217,11 @@ public class Cutouts extends Activity {
             }
         }
         return result;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

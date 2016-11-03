@@ -1,11 +1,13 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +20,11 @@ import java.util.Random;
 public class LogicThree extends Activity {
     private TextView primer,stat;
     private EditText result;
-    private int tru = 0, fals = 0;
+    private ProgressBar pb;
+    private int tru = 0, fals = 0, part = Settings.LOGICS_TIME/100;
     public String resul = "";
     private Random r = new Random();
-    private boolean use_timer, started;
-    private CountDownTimer countDownTimer;
+    private CountDownTimer cdt = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,27 +32,53 @@ public class LogicThree extends Activity {
         primer = (TextView) findViewById(R.id.logic_three_tv);
         stat = (TextView) findViewById(R.id.logic_three_tv_result);
         result = (EditText) findViewById(R.id.logic_three_result);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
-        if(use_timer) {
-            if (started == false) {
-                started = true;
-                countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
+        pb = (ProgressBar) findViewById(R.id.logic_three_pb);
+        result.setText("");
+        String[] rock;
+        switch (r.nextInt(3)) {
+            case 0:
+                rock = generateFirst();
+                fillWithoutLast(rock);
+                break;
+            case 1:
+                rock = generateSecond();
+                fillWithoutLast(rock);
+                break;
+            case 2:
+                rock = generateThird();
+                fillWithoutLast(rock);
+                break;
+        }
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
+            cdt = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    pb.setProgress((int)millisUntilFinished/part);
+                    if(millisUntilFinished<10000) {
+                        setTitle(""+millisUntilFinished/1000);
                     }
+                }
 
-                    @Override
-                    public void onFinish() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                                + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                        LogicThree.this.finish();
-                    }
-                }.start();
-            }
+                @Override
+                public void onFinish() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
+                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
+                    LogicThree.this.finish();
+                }
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.logic_three), getString(R.string.ma_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
         }
     }
     public void next(View v) {
@@ -137,5 +165,10 @@ public class LogicThree extends Activity {
     }
     private  String vo(int i) {
         return String.valueOf(i);
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

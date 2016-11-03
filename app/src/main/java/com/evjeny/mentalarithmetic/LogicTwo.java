@@ -1,11 +1,13 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +20,11 @@ import java.util.Random;
 public class LogicTwo extends Activity {
     private TextView tvone, tvtwo, tvresult;
     private EditText result;
-    private int tru = 0, fals = 0;
+    private ProgressBar pb;
+    private int tru = 0, fals = 0, part = Settings.LOGICS_TIME/100;
     private String resul = "";
     private Random r = new Random();
-    private boolean use_timer, started;
-    private CountDownTimer countDownTimer;
+    private CountDownTimer cdt = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,27 +33,54 @@ public class LogicTwo extends Activity {
         tvtwo = (TextView) findViewById(R.id.logic_two_tv2);
         tvresult = (TextView) findViewById(R.id.logic_two_tv_result);
         result = (EditText) findViewById(R.id.logic_two_result);
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
-        if(use_timer) {
-            if (started == false) {
-                started = true;
-                countDownTimer = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
+        pb = (ProgressBar) findViewById(R.id.logic_two_pb);
+        String[] one, two;
+        switch (r.nextInt(2)) {
+            case 0:
+                one = generateSmth("+");
+                two = generateSmth("+");
+                tvone.setText(one[0]+"("+one[2]+")"+one[1]);
+                tvtwo.setText(two[0]+"( ? )"+two[1]);
+                resul = two[2];
+                break;
+            case 1:
+                one = generateSmth("-");
+                two = generateSmth("-");
+                tvone.setText(one[0]+"("+one[2]+")"+one[1]);
+                tvtwo.setText(two[0]+"( ? )"+two[1]);
+                resul = two[2];
+                break;
+        }
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
+            cdt = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    pb.setProgress((int)millisUntilFinished/part);
+                    if(millisUntilFinished<10000) {
+                        setTitle(""+millisUntilFinished/1000);
                     }
+                }
 
-                    @Override
-                    public void onFinish() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                                + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                        LogicTwo.this.finish();
-                    }
-                }.start();
-            }
+                @Override
+                public void onFinish() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
+                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
+                    LogicTwo.this.finish();
+                }
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.logic_two), getString(R.string.ma_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
         }
     }
     public void next(View v) {
@@ -67,6 +96,7 @@ public class LogicTwo extends Activity {
             }
             result.setText("");
         }
+        result.setText("");
         String[] one, two;
         switch (r.nextInt(2)) {
             case 0:
@@ -133,5 +163,10 @@ public class LogicTwo extends Activity {
             }
         }
         return result;
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

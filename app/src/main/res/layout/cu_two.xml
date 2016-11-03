@@ -6,6 +6,13 @@
 <LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cu_two_pb" />
+
     <LinearLayout
         android:orientation="vertical" android:layout_width="wrap_content"
         android:id="@+id/cu_two_view_container"
@@ -72,6 +79,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cu_two_result" />
+        android:id="@+id/cu_two_result"
+        android:textColor="@color/black" />
 </LinearLayout>
 </ScrollView>

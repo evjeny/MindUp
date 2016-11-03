@@ -1,11 +1,13 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +18,12 @@ import java.util.Random;
  */
 public class MA extends Activity {
     private EditText result;
-    private boolean started=false, use_timer;
     private TextView primer, nums;
+    private ProgressBar pb;
     private Random r;
     private int resul = 0; //Правильный ответ на пример
-    private int tru = 0, fals = 0;
-    private CountDownTimer cdt;
+    private int tru = 0, fals = 0, part = Settings.MA_TIME/100;
+    private CountDownTimer cdt = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,28 +31,50 @@ public class MA extends Activity {
         result = (EditText) findViewById(R.id.ma_result);
         primer = (TextView) findViewById(R.id.ma_primer);
         nums = (TextView) findViewById(R.id.ma_nums);
+        pb = (ProgressBar) findViewById(R.id.ma_pb);
         r = new Random();
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        use_timer = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false);
-        if(use_timer) {
-            if (started == false) {
-                started = true;
-                cdt = new CountDownTimer(Settings.LOGICS_TIME, 1000) {
-                    @Override
-                    public void onTick(long millisUntilFinished) {
+        switch (r.nextInt(2)) {
+            case 0:
+                String[] sum = generateSum(1000);
+                primer.setText(sum[0]+sum[3]+sum[1]+"=");
+                resul = Integer.valueOf(sum[2]);
+                break;
+            case 1:
+                String[] mp = generateMult(1000);
+                primer.setText(mp[0]+"*11=");
+                resul = Integer.valueOf(mp[1]);
+                break;
+        }
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
+            cdt = new CountDownTimer(Settings.MA_TIME, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    pb.setProgress((int)millisUntilFinished/part);
+                    if(millisUntilFinished<10000) {
+                        setTitle(""+millisUntilFinished/1000);
                     }
+                }
 
-                    @Override
-                    public void onFinish() {
-                        Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                                + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                        MA.this.finish();
-                    }
-                }.start();
-            }
+                @Override
+                public void onFinish() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
+                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
+                    MA.this.finish();
+                }
+            };
+        }
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.ma), getString(R.string.ma_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
         }
     }
     private String[] generateSum(int max) {
@@ -114,5 +138,10 @@ public class MA extends Activity {
                 break;
         }
         result.setText("");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }

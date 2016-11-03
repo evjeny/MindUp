@@ -1,6 +1,7 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -8,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +20,13 @@ import java.util.Random;
  * at 15:21
  */
 public class CutoutsTwo extends Activity {
-    ImageButton one, two, three, four, five, six;
-    LinearLayout container;
-    private int tru = 0, fals = 0;
-    TextView res;
-    Random r = new Random();
-    CountDownTimer cdt;
+    private ImageButton one, two, three, four, five, six;
+    private LinearLayout container;
+    private ProgressBar pb;
+    private int tru = 0, fals = 0, part = Settings.CUTOUTS_TIME /100;
+    private TextView res;
+    private Random r = new Random();
+    private CountDownTimer cdt = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +39,16 @@ public class CutoutsTwo extends Activity {
         five = (ImageButton) findViewById(R.id.cu_two_five);
         six = (ImageButton) findViewById(R.id.cu_two_six);
         res = (TextView) findViewById(R.id.cu_two_result);
+        pb = (ProgressBar) findViewById(R.id.cu_two_pb);
         initViews();
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
         cdt = new CountDownTimer(Settings.CUTOUTS_TIME, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
+                pb.setProgress((int)millisUntilFinished/part);
+                if(millisUntilFinished<10000) {
+                    setTitle(""+millisUntilFinished/1000);
+                }
             }
 
             @Override
@@ -50,7 +57,20 @@ public class CutoutsTwo extends Activity {
                         + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
                 CutoutsTwo.this.finish();
             }
-        }.start();}
+        };}
+        DialogShower ds = new DialogShower(this);
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hints", true)) {
+            ds.showDialogWithOneButton(getString(R.string.cutouts_two), getString(R.string.cu_info),
+                    getString(R.string.ok), R.drawable.info, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (cdt != null) cdt.start();
+                        }
+                    });
+        }
+        else {
+            if(cdt!=null) cdt.start();
+        }
     }
     public void clicked(View v) {
         if(v.getTag().equals("this")) {
@@ -121,5 +141,10 @@ public class CutoutsTwo extends Activity {
             case 5:
                 six.setImageBitmap(todo);
         }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(cdt!=null) cdt.cancel();
     }
 }
