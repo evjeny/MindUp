@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -30,6 +31,8 @@ public class NumChain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_chain_one);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         initViewer();
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
             cdt = new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
@@ -55,8 +58,10 @@ public class NumChain extends Activity {
 
                         @Override
                         public void onFinish() {
-                            Toast.makeText(getApplicationContext(), getString(R.string.tru) + ": "
-                                    + match_count + "/50", Toast.LENGTH_LONG).show();
+                            String tos = getString(R.string.tru) + ": "
+                                    + match_count + "/50";
+                            Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+                            Saver.saveToMindUpWithCurrentDate("num_chain_",tos.getBytes());
                             NumChain.this.finish();
                         }
                     }.start();
@@ -127,6 +132,19 @@ public class NumChain extends Activity {
         nums = (EditText) findViewById(R.id.num_chain_et);
         two = (TextView) findViewById(R.id.num_chain_two_tv);
         pb2 = (ProgressBar) findViewById(R.id.nc_two_pb);
+    }
+    private void finishWithResult()
+    {
+        int falser = 50-match_count;
+        String tos = getString(R.string.tru) + ":" + match_count
+                + "\n" + getString(R.string.fals) + ":" + falser;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {match_count, falser});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        NumChain.this.finish();
     }
     @Override
     protected void onStop() {

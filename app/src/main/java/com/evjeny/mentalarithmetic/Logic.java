@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -34,6 +35,8 @@ public class Logic extends Activity {
         result = (EditText) findViewById(R.id.logic_result);
         tv = (TextView)findViewById(R.id.logic_tv_result);
         pb = (ProgressBar) findViewById(R.id.logic_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         String[] one, two;
         switch (r.nextInt(4)) {
             case 0:
@@ -77,9 +80,7 @@ public class Logic extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    Logic.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -216,5 +217,17 @@ public class Logic extends Activity {
     protected void onStop() {
         super.onStop();
         if(cdt!=null) cdt.cancel();
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        Logic.this.finish();
     }
 }

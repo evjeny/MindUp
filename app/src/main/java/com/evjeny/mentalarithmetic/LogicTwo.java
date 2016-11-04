@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -34,6 +35,8 @@ public class LogicTwo extends Activity {
         tvresult = (TextView) findViewById(R.id.logic_two_tv_result);
         result = (EditText) findViewById(R.id.logic_two_result);
         pb = (ProgressBar) findViewById(R.id.logic_two_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         String[] one, two;
         switch (r.nextInt(2)) {
             case 0:
@@ -63,9 +66,7 @@ public class LogicTwo extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    LogicTwo.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -163,6 +164,18 @@ public class LogicTwo extends Activity {
             }
         }
         return result;
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        LogicTwo.this.finish();
     }
     @Override
     protected void onStop() {

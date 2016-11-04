@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -32,6 +33,8 @@ public class MA extends Activity {
         primer = (TextView) findViewById(R.id.ma_primer);
         nums = (TextView) findViewById(R.id.ma_nums);
         pb = (ProgressBar) findViewById(R.id.ma_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         r = new Random();
         switch (r.nextInt(2)) {
             case 0:
@@ -57,9 +60,7 @@ public class MA extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    MA.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -138,6 +139,18 @@ public class MA extends Activity {
                 break;
         }
         result.setText("");
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        MA.this.finish();
     }
     @Override
     protected void onStop() {

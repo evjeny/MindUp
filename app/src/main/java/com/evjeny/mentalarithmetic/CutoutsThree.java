@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -59,6 +60,8 @@ public class CutoutsThree extends Activity {
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
         pb = (ProgressBar) findViewById(R.id.cu_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         try {
             unzip(new File(root()+"/cutouts/additional.zip"), new File(root()+"/cutouts/"));
         } catch (IOException e) {
@@ -91,9 +94,7 @@ public class CutoutsThree extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    CutoutsThree.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -148,25 +149,6 @@ public class CutoutsThree extends Activity {
         Thread t = new Thread(runnable);
         t.start();
     }
-
-    /**working code:
-     * clearIBTags();
-     String[] files = amList("cutouts/ans");
-     String f = files[r.nextInt(files.length)];
-     main.setImageBitmap(fs(amOpen(exs+ File.separator+f)));
-     Bitmap current = fs(amOpen(ans+File.separator+f));
-     int btodo = r.nextInt(6);
-     setSrc(btodo, current);
-     setThisTag(btodo);
-     List<String> newp = amListWithout(ans, f);
-     for(int i = 0; i<6; i++) {
-     if(i!=btodo) {
-     setSrc(i, fs(amOpen(ans+File.separator+newp.get(r.nextInt(newp.size())))));
-     } else {
-     setSrc(i, current);
-     }
-     }
-     */
     private void clearIBTags() {
         one.setTag("null");
         two.setTag("null");
@@ -274,6 +256,18 @@ public class CutoutsThree extends Activity {
         } finally {
             zis.close();
         }
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        CutoutsThree.this.finish();
     }
     @Override
     protected void onStop() {

@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
@@ -33,6 +34,8 @@ public class LogicThree extends Activity {
         stat = (TextView) findViewById(R.id.logic_three_tv_result);
         result = (EditText) findViewById(R.id.logic_three_result);
         pb = (ProgressBar) findViewById(R.id.logic_three_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         result.setText("");
         String[] rock;
         switch (r.nextInt(3)) {
@@ -61,9 +64,7 @@ public class LogicThree extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    LogicThree.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -162,6 +163,18 @@ public class LogicThree extends Activity {
         result[2]=vo(three);
         result[3]=vo(four);
         return result;
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        LogicThree.this.finish();
     }
     private  String vo(int i) {
         return String.valueOf(i);

@@ -7,6 +7,26 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_last_result"
+            android:layout_weight="5" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_results"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:onClick="save" />
+    </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +98,7 @@
         android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cutouts_three"
             android:layout_weight="1"
@@ -91,5 +111,11 @@
             android:onClick="cu_three_info"
             android:src="@drawable/info" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/colors"
+        android:onClick="colors" />
 </LinearLayout>
 </ScrollView>

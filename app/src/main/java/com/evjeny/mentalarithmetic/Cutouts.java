@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -59,6 +60,8 @@ public class Cutouts extends Activity {
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
         pb = (ProgressBar) findViewById(R.id.cu_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         h = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -86,9 +89,7 @@ public class Cutouts extends Activity {
 
                 @Override
                 public void onFinish() {
-                    Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                            + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                    Cutouts.this.finish();
+                    finishWithResult();
                 }
             };
         }
@@ -217,6 +218,18 @@ public class Cutouts extends Activity {
             }
         }
         return result;
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        Cutouts.this.finish();
     }
 
     @Override

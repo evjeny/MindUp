@@ -29,6 +29,7 @@
         <activity android:name=".WordChain" android:label="@string/word_chain"/>
         <activity android:name=".CutoutsThree" android:label="@string/cutouts_three" />
         <activity android:name=".CutoutsThreeInfo" />
+        <activity android:name=".Colors" android:label="@string/colors" />
     </application>
 
 </manifest>

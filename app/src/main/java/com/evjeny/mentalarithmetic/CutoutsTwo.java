@@ -2,6 +2,7 @@ package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -40,6 +41,8 @@ public class CutoutsTwo extends Activity {
         six = (ImageButton) findViewById(R.id.cu_two_six);
         res = (TextView) findViewById(R.id.cu_two_result);
         pb = (ProgressBar) findViewById(R.id.cu_two_pb);
+        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
+                getBoolean("save_results",false);
         initViews();
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
         cdt = new CountDownTimer(Settings.CUTOUTS_TIME, 1000) {
@@ -53,9 +56,7 @@ public class CutoutsTwo extends Activity {
 
             @Override
             public void onFinish() {
-                Toast.makeText(getApplicationContext(), getString(R.string.tru) + ":" + tru
-                        + "\n" + getString(R.string.fals) + ":" + fals, Toast.LENGTH_LONG).show();
-                CutoutsTwo.this.finish();
+                finishWithResult();
             }
         };}
         DialogShower ds = new DialogShower(this);
@@ -141,6 +142,18 @@ public class CutoutsTwo extends Activity {
             case 5:
                 six.setImageBitmap(todo);
         }
+    }
+    private void finishWithResult()
+    {
+        String tos = getString(R.string.tru) + ":" + tru
+                + "\n" + getString(R.string.fals) + ":" + fals;
+        Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        CutoutsTwo.this.finish();
     }
     @Override
     protected void onStop() {
