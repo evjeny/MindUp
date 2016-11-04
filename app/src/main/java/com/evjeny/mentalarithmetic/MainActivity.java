@@ -37,13 +37,13 @@ public class MainActivity extends Activity {
                 f = getString(R.string.fals)+": ",
                 n = "\n";
         String res = getString(R.string.ma)+n+t+results[0][0]+n+f+results[0][1]+n+
-        getString(R.string.logic)+n+t+results[1][0]+n+f+results[1][1]+n+
-        getString(R.string.logic_two)+n+t+results[2][0]+n+f+results[2][1]+n+
-        getString(R.string.logic_three)+n+t+results[3][0]+n+f+results[3][1]+n+
-        getString(R.string.num_chain)+n+t+results[4][0]+n+f+results[4][1]+n+
-        getString(R.string.cutouts)+n+t+results[5][0]+n+f+results[5][1]+n+
-        getString(R.string.cutouts_two)+n+t+results[6][0]+n+f+results[6][1]+n+
-        getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+
+        getString(R.string.logic)+n+t+results[1][0]+n+f+results[1][1]+n+n+
+        getString(R.string.logic_two)+n+t+results[2][0]+n+f+results[2][1]+n+n+
+        getString(R.string.logic_three)+n+t+results[3][0]+n+f+results[3][1]+n+n+
+        getString(R.string.num_chain)+n+t+results[4][0]+"/50"+n+n+
+        getString(R.string.cutouts)+n+t+results[5][0]+n+f+results[5][1]+n+n+
+        getString(R.string.cutouts_two)+n+t+results[6][0]+n+f+results[6][1]+n+n+
+        getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+n+
         getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1];
         Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
     }
@@ -180,8 +180,7 @@ public class MainActivity extends Activity {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
                     last.setText(getString(R.string.num_chain)+"\n"+
-                            getString(R.string.tru)+": "+todo[0]+"\n"+
-                            getString(R.string.fals)+": "+todo[1]);
+                            getString(R.string.tru)+": "+todo[0]+"/50");
                     results[4][0] = String.valueOf(todo[0]);
                     results[4][1] = String.valueOf(todo[1]);
                 }

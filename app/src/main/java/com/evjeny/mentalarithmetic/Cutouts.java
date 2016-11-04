@@ -60,8 +60,6 @@ public class Cutouts extends Activity {
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
         pb = (ProgressBar) findViewById(R.id.cu_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         h = new Handler() {
             @Override
             public void handleMessage(Message msg) {

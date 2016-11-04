@@ -60,8 +60,6 @@ public class CutoutsThree extends Activity {
         five = (ImageButton) findViewById(R.id.cub_five);
         six = (ImageButton) findViewById(R.id.cub_six);
         pb = (ProgressBar) findViewById(R.id.cu_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         try {
             unzip(new File(root()+"/cutouts/additional.zip"), new File(root()+"/cutouts/"));
         } catch (IOException e) {

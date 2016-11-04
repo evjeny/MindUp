@@ -43,8 +43,6 @@ public class Colors extends Activity{
         result = (TextView) findViewById(R.id.colors_result);
         showed = (TextView) findViewById(R.id.colors_current);
         pb = (ProgressBar) findViewById(R.id.colors_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         generateColor();
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
             cdt = new CountDownTimer(Settings.COLORS_TIME, 1000) {

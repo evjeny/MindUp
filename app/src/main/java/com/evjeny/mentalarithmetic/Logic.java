@@ -35,8 +35,6 @@ public class Logic extends Activity {
         result = (EditText) findViewById(R.id.logic_result);
         tv = (TextView)findViewById(R.id.logic_tv_result);
         pb = (ProgressBar) findViewById(R.id.logic_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         String[] one, two;
         switch (r.nextInt(4)) {
             case 0:

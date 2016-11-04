@@ -33,8 +33,6 @@ public class MA extends Activity {
         primer = (TextView) findViewById(R.id.ma_primer);
         nums = (TextView) findViewById(R.id.ma_nums);
         pb = (ProgressBar) findViewById(R.id.ma_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         r = new Random();
         switch (r.nextInt(2)) {
             case 0:

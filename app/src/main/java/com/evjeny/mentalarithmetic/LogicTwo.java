@@ -35,8 +35,6 @@ public class LogicTwo extends Activity {
         tvresult = (TextView) findViewById(R.id.logic_two_tv_result);
         result = (EditText) findViewById(R.id.logic_two_result);
         pb = (ProgressBar) findViewById(R.id.logic_two_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         String[] one, two;
         switch (r.nextInt(2)) {
             case 0:

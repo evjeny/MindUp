@@ -34,8 +34,6 @@ public class LogicThree extends Activity {
         stat = (TextView) findViewById(R.id.logic_three_tv_result);
         result = (EditText) findViewById(R.id.logic_three_result);
         pb = (ProgressBar) findViewById(R.id.logic_three_pb);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         result.setText("");
         String[] rock;
         switch (r.nextInt(3)) {

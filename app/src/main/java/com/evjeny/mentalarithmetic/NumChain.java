@@ -31,8 +31,6 @@ public class NumChain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.num_chain_one);
-        final boolean save = PreferenceManager.getDefaultSharedPreferences(this).
-                getBoolean("save_results",false);
         initViewer();
         if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("countdown", false)) {
             cdt = new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
@@ -85,12 +83,31 @@ public class NumChain extends Activity {
     public void next(View v) {
         //cdt.cancel();
         initAnswer();
+        new CountDownTimer(Settings.NUM_CHAIN_TIME, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                pb2.setProgress((int)millisUntilFinished/part);
+                if(millisUntilFinished<10000) {
+                    setTitle(""+millisUntilFinished/1000);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                String tos = getString(R.string.tru) + ": "
+                        + match_count + "/50";
+                Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
+                Saver.saveToMindUpWithCurrentDate("num_chain_",tos.getBytes());
+                NumChain.this.finish();
+            }
+        }.start();
     }
     public void nums_ch(View v) {
         String n = nums.getText().toString();
         if(!n.equals("")) {
             match_count = getMatchCount(opaopa, n);
             two.setText(getText(R.string.tru)+": "+match_count+"/50");
+            finishWithResult();
         }
     }
     private String createSuperNumber(int length) {
@@ -136,8 +153,7 @@ public class NumChain extends Activity {
     private void finishWithResult()
     {
         int falser = 50-match_count;
-        String tos = getString(R.string.tru) + ":" + match_count
-                + "\n" + getString(R.string.fals) + ":" + falser;
+        String tos = getString(R.string.tru) + ":" + match_count+"/50";
         Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
         Bundle conData = new Bundle();
         conData.putIntArray("result", new int[] {match_count, falser});
