@@ -167,4 +167,13 @@ public class NumChain extends Activity {
         super.onStop();
         if(cdt!=null) cdt.cancel();
     }
+    @Override
+    public void onBackPressed() {
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {match_count, 50-match_count});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        this.finish();
+    }
 }

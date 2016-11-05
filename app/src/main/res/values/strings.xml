@@ -58,4 +58,9 @@
     <string name="colors_info">Select the text color, but not its meaning.</string>
     <string name="save_results">Save results</string>
     <string name="save_results_to_dir">Save results to /root_folder/MindUp</string>
+    <string name="exit">Exit</string>
+    <string name="exit_f_a">Exit from app?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="saved_as">Saved as:</string>
 </resources>

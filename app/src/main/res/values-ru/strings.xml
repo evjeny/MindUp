@@ -44,4 +44,9 @@
     <string name="colors_info">Выберете цвет текста, но не его значение.</string>
     <string name="save_results">Сохранить результаты</string>
     <string name="save_results_to_dir">Сохранять результаты в /корневая_папка/MindUp</string>
+    <string name="exit">Выход</string>
+    <string name="exit_f_a">Выйти из приложения?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="saved_as">Сохранено как: </string>
 </resources>

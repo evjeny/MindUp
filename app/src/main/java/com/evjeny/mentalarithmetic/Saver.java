@@ -35,7 +35,7 @@ public class Saver {
         /**TODO Save file to /sdcard/MindUp, where name is current date
          *      Сохраняет файл в /sdcard/MindUp, в качестве имени использует текущую дату **/
         save_dir.mkdir();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyy.MMMMM.dd-hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd_hh:mm:ss");
         String filename = sdf.format(new Date(System.currentTimeMillis()))+".txt";
         File current = new File(save_dir+File.separator+filename);
         try {
@@ -48,12 +48,12 @@ public class Saver {
             e.printStackTrace();
         }
     }
-    public static void saveToMindUpWithCurrentDate(String name, byte[] file) {
+    public static String saveToMindUpWithCurrentDate(String name, byte[] file) {
         /**TODO Save file to /sdcard/MindUp, where name of file is current date + name
          *      Сохраняет файл в /sdcard/MindUp, в качестве имени использует текущую
          *      дату и переменную name **/
         save_dir.mkdir();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyy.MMMMM.dd-hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd-hh:mm:ss");
         String filename = name+"_"+sdf.format(new Date(System.currentTimeMillis()))+".txt";
         File current = new File(save_dir+File.separator+filename);
         try {
@@ -65,6 +65,7 @@ public class Saver {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return current.getPath();
     }
     public static void saveFileToRoot(String name, byte[] file) {
         /**TODO Save file to /sdcard/

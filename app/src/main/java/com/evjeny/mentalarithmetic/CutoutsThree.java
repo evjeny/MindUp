@@ -272,4 +272,13 @@ public class CutoutsThree extends Activity {
         super.onStop();
         if(cdt!=null) cdt.cancel();
     }
+    @Override
+    public void onBackPressed() {
+        Bundle conData = new Bundle();
+        conData.putIntArray("result", new int[] {tru, fals});
+        Intent intent = new Intent();
+        intent.putExtras(conData);
+        setResult(RESULT_OK, intent);
+        this.finish();
+    }
 }

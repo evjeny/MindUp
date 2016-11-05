@@ -45,4 +45,19 @@ public class DialogShower {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+    public void showDialogWithTwoButtons(String title, String message,
+    int iconResId, boolean cancelable, String positive_text, DialogInterface.OnClickListener positive,
+    String negative_text, DialogInterface.OnClickListener negative) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setCancelable(cancelable);
+        if(iconResId!=0) {
+            builder.setIcon(iconResId);
+        }
+        builder.setPositiveButton(positive_text, positive);
+        builder.setNegativeButton(negative_text, negative);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }

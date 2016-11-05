@@ -1,6 +1,7 @@
 package com.evjeny.mentalarithmetic;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,12 +14,14 @@ import java.io.File;
 
 public class MainActivity extends Activity {
     private TextView last;
+    private DialogShower ds;
     private String[][] results = new String[9][2];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         last = (TextView) findViewById(R.id.main_last_result);
+        ds = new DialogShower(this);
         clear_results();
         Button cu_three_button = (Button) findViewById(R.id.cu_three_button);
         cu_three_button.setEnabled(false);
@@ -45,7 +48,9 @@ public class MainActivity extends Activity {
         getString(R.string.cutouts_two)+n+t+results[6][0]+n+f+results[6][1]+n+n+
         getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+n+
         getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1];
-        Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
+        String path = Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
+        ds.showDialogWithOneButton(getString(R.string.restart),
+        getString(R.string.saved_as)+path, getString(R.string.ok), R.drawable.info);
     }
     public void ma(View view) {
         //1
@@ -83,7 +88,6 @@ public class MainActivity extends Activity {
         startActivityForResult(cu_two,7);
     }
     public void cu_two_info(View v) {
-        DialogShower ds = new DialogShower(this);
         ds.showDialogWithOneButton(getString(R.string.cutouts_two),
         getString(R.string.cu_two_info), getString(R.string.ok), R.drawable.info);
     }
@@ -230,5 +234,22 @@ public class MainActivity extends Activity {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ds.showDialogWithTwoButtons(getString(R.string.exit), getString(R.string.exit_f_a),
+        0, false,
+                getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }, getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
     }
 }
