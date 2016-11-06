@@ -1,3 +1,2 @@
 # MindUp
-App-trainer for brains
-Здесь вы найдёт много примеров применения возможностей устройства для развития логики и памяти.
+App-trainer for brains. Many interesting functions. Harder, than BF :D
