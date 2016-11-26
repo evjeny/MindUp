@@ -1,121 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="fill_parent">
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/main_last_result"
-            android:layout_weight="5" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_results"
-            android:id="@+id/button2"
-            android:layout_weight="1"
-            android:onClick="save" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/main_last_result"
+                android:layout_weight="5" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ma"
-        android:onClick="ma" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logic"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:onClick="logic" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logic_two"
-        android:layout_gravity="center_horizontal"
-        android:onClick="logic_two" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logic_three"
-        android:layout_gravity="center_horizontal"
-        android:onClick="logic_three" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/num_chain"
-        android:layout_gravity="center_horizontal"
-        android:onClick="num_chain" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cutouts"
-        android:layout_gravity="center_horizontal"
-        android:onClick="cu" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/save_results"
+                android:id="@+id/button2"
+                android:layout_weight="1"
+                android:onClick="save" />
+        </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cutouts_two"
+            android:text="@string/pi"
+            android:onClick="pi" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ma"
+            android:onClick="ma" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logic"
+            android:id="@+id/button"
             android:layout_gravity="center_horizontal"
-            android:onClick="cu_two"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:onClick="cu_two_info"
-            android:src="@drawable/info" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+            android:onClick="logic" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cutouts_three"
-            android:layout_weight="1"
-            android:onClick="cu_three"
-            android:id="@+id/cu_three_button" />
+            android:text="@string/logic_two"
+            android:layout_gravity="center_horizontal"
+            android:onClick="logic_two" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:onClick="cu_three_info"
-            android:src="@drawable/info" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logic_three"
+            android:layout_gravity="center_horizontal"
+            android:onClick="logic_three" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/num_chain"
+            android:layout_gravity="center_horizontal"
+            android:onClick="num_chain" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cutouts"
+            android:layout_gravity="center_horizontal"
+            android:onClick="cu" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cutouts_two"
+                android:layout_gravity="center_horizontal"
+                android:onClick="cu_two"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="cu_two_info"
+                android:src="@drawable/info" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cutouts_three"
+                android:layout_weight="1"
+                android:onClick="cu_three"
+                android:id="@+id/cu_three_button" />
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:onClick="cu_three_info"
+                android:src="@drawable/info" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/colors"
+            android:onClick="colors" />
+
+        <!--<Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Graphs"
+            android:onClick="graphs" />-->
     </LinearLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/colors"
-        android:onClick="colors" />
-</LinearLayout>
 </ScrollView>
+</LinearLayout>

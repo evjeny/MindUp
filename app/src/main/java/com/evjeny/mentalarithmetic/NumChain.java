@@ -1,11 +1,11 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,7 +18,7 @@ import java.util.Random;
  * Created by Evjeny on 15.10.2016.
  * at 19:11
  */
-public class NumChain extends Activity {
+public class NumChain extends AppCompatActivity {
     private TextView one, two;
     private EditText nums;
     private ProgressBar pb1, pb2;

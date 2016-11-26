@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppTheme" parent="android:Theme.Holo" >
-        <item name="android:windowBackground">@drawable/bg_color</item>
-        <item name="android:colorBackground">@drawable/bg_color</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light" >
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowActionBar">true</item>
+    </style>
+    <style name="AppTheme.Fullscreen" parent="AppTheme" >
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 </resources>

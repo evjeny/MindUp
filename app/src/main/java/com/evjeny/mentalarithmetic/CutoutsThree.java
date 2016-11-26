@@ -1,6 +1,5 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +10,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,7 +34,7 @@ import java.util.zip.ZipInputStream;
  * Created by Evjeny on 30.10.2016.
  * at 10:09
  */
-public class CutoutsThree extends Activity {
+public class CutoutsThree extends AppCompatActivity {
     private ImageView main;
     private ImageButton one, two, three, four, five, six;
     private TextView result;

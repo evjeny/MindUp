@@ -1,11 +1,11 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,7 +18,7 @@ import java.util.Random;
  * Created by Evjeny on 12.10.2016.
  * at 21:20
  */
-public class LogicThree extends Activity {
+public class LogicThree extends AppCompatActivity {
     private TextView primer,stat;
     private EditText result;
     private ProgressBar pb;

@@ -1,9 +1,9 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import java.io.File;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private TextView last;
     private DialogShower ds;
-    private String[][] results = new String[9][2];
+    private String[][] results = new String[10][2];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +47,13 @@ public class MainActivity extends Activity {
         getString(R.string.cutouts)+n+t+results[5][0]+n+f+results[5][1]+n+n+
         getString(R.string.cutouts_two)+n+t+results[6][0]+n+f+results[6][1]+n+n+
         getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+n+
-        getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1];
+        getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1]+n+n+
+        getString(R.string.pi)+n+t+results[9][0]+"/200";
         String path = Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
         ds.showDialogWithOneButton(getString(R.string.restart),
         getString(R.string.saved_as)+path, getString(R.string.ok), R.drawable.info);
     }
-    public void ma(View view) {
+    public void ma(View viw) {
         //1
         Intent ma = new Intent(this, MA.class);
         startActivityForResult(ma, 1);
@@ -109,6 +110,14 @@ public class MainActivity extends Activity {
         Intent colors = new Intent(this, Colors.class);
         startActivityForResult(colors, 9);
     }
+    public void pi(View v) {
+        Intent pi = new Intent(this, PiActivity.class);
+        startActivityForResult(pi, 10);
+    }
+    public void graphs(View v) {
+        Intent graphs = new Intent(this, Graphs.class);
+        startActivity(graphs);
+    }
 
     public void save(View v) {
         writeToMindUp();
@@ -121,13 +130,13 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
                 Intent prefs = new Intent(this, Settings.class);
                 startActivity(prefs);
             default:
-                return super.onMenuItemSelected(featureId, item);
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -231,6 +240,16 @@ public class MainActivity extends Activity {
                     getString(R.string.fals)+": "+todo[1]);
                     results[8][0] = String.valueOf(todo[0]);
                     results[8][1] = String.valueOf(todo[1]);
+                }
+                break;
+            case 10:
+                if(resultCode==RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.pi)+"\n"+
+                            getString(R.string.tru)+": "+todo[0]+"/200");
+                    results[9][0] = String.valueOf(todo[0]);
+                    results[9][1] = String.valueOf(todo[1]);
                 }
                 break;
         }

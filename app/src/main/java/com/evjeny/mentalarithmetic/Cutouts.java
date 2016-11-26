@@ -1,6 +1,5 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -11,6 +10,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,7 +29,7 @@ import java.util.Random;
  * Created by Evjeny on 22.10.2016.
  * at 17:16
  */
-public class Cutouts extends Activity {
+public class Cutouts extends AppCompatActivity {
     private ImageView main;
     private ImageButton one, two, three, four, five, six;
     private TextView result;

@@ -10,7 +10,7 @@ import android.preference.PreferenceActivity;
 public class Settings extends PreferenceActivity {
     public static int LOGICS_TIME = 120000, //120000
     MA_TIME = 120000, NUM_CHAIN_TIME = 100000, CUTOUTS_TIME = 30000,
-    COLORS_TIME = 60000;
+    COLORS_TIME = 60000, PI_TIME = 120000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
