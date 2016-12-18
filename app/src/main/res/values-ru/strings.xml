@@ -50,4 +50,6 @@
     <string name="yes">Да</string>
     <string name="saved_as">Сохранено как: </string>
     <string name="pi">Число Пи</string>
+    <string name="graphs">Графики</string>
+    <string name="ma_two">Устный счёт 2</string>
 </resources>

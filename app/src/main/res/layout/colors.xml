@@ -23,12 +23,26 @@
         android:id="@+id/colors_result"
         android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/colors_current"
-        android:textSize="20dp"
-        android:layout_margin="40dp" />
+        android:background="@color/lt_gray"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/colors_current"
+            android:textSize="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="72dp" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"

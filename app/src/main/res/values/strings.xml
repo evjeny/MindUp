@@ -19,21 +19,6 @@
     <string name="ok">Ok</string>
     <string name="word_chain">Chain of words</string>
     <string name="back">Back</string>
-    <string-array name="waytoth_size">
-        <item>100</item>
-        <item>500</item>
-        <item>1000</item>
-    </string-array>
-    <string-array name="word_chain_length">
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-    </string-array>
-    <string-array name="entry_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
     <string name="w_ch_size">Words in chain</string>
     <string name="set_max_size">Set max value</string>
     <string name="cutouts_three">Cutouts 3</string>
@@ -64,4 +49,6 @@
     <string name="no">No</string>
     <string name="saved_as">Saved as:</string>
     <string name="pi">Pi</string>
+    <string name="graphs">Graphs</string>
+    <string name="ma_two">Mental Arithmetic 2</string>
 </resources>

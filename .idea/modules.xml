@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MentalArithmetic.iml" filepath="$PROJECT_DIR$/MentalArithmetic.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/textcreator/textcreator.iml" filepath="$PROJECT_DIR$/textcreator/textcreator.iml" />
     </modules>
   </component>
 </project>

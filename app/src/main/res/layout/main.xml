@@ -42,10 +42,15 @@
             android:onClick="ma" />
 
         <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ma_two"
+            android:onClick="ma_two" />
+
+        <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/logic"
-            android:id="@+id/button"
             android:layout_gravity="center_horizontal"
             android:onClick="logic" />
 
@@ -129,7 +134,7 @@
         <!--<Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Graphs"
+            android:text="@string/graphs"
             android:onClick="graphs" />-->
     </LinearLayout>
 </ScrollView>

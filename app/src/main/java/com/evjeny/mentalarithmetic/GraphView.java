@@ -23,10 +23,15 @@ public class GraphView extends View {
     private Context c;
     private Paint grid_paint, line_paint;
     private Bitmap base;
+    private int type = 0; //0 is view, 1 is edit
+    private int size = 400;
+    
+    //its 4 viewing
     private Path line;
     private int[][] text_poses = new int[5][2];
-    private int type = 0; //0 is view, 1 is edit
-    private int size = 600;
+    
+    //its 4 drawing
+
     public GraphView(Context context) {
         super(context);
         grid_paint = new Paint(Color.BLACK);
@@ -71,10 +76,10 @@ public class GraphView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction()==MotionEvent.ACTION_DOWN) {
-            Toast.makeText(c, "x: "+event.getX()+",y: "+event.getY(), Toast.LENGTH_SHORT).show();
-            switch ((int)event.getX()) {
-                
+        if(type==1) {
+            if(event.getAction()==MotionEvent.ACTION_UP) {
+                int[] curr = crdsFromTouch((int)event.getX(), (int)event.getY());
+                Toast.makeText(c, "x:"+curr[0]+",y:"+curr[1], Toast.LENGTH_SHORT).show();
             }
         }
         return super.onTouchEvent(event);
@@ -94,9 +99,9 @@ public class GraphView extends View {
             for(int i = 0; i<text_poses.length; i++) {
                 int[] c1 = text_poses[i];
                 Paint tp = new Paint(Color.BLUE);
-                tp.setStyle(Paint.Style.STROKE);
                 int sum = (i+1);
                 tp.setTextSize(size/25);
+
                 canvas.drawText(String.valueOf(sum), c1[0]-size/16, c1[1]+size/16,tp);
             }
         }
@@ -140,5 +145,25 @@ public class GraphView extends View {
             one+=size/4;
         }
         return result;
+    }
+    private int[] crdsFromTouch(int x, int y) {
+        int[] result = new int[2];
+        int one_block = size/4;
+        for(int i = 0; i<size; i+=size/4) {
+            for(int j = 0; j<size; j+=size/4) {
+                if(btw(x, i, i+one_block)&&btw(y,j,j+one_block)) {
+                    result[0] = i+one_block/2;
+                    result[1] = j+one_block/2;
+                }
+            }
+        }
+        return result;
+    }
+    private boolean btw(int current, int one, int two) {
+        if((current>=one&&current<two)||(current>=two&&current<one)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

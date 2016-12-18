@@ -13,4 +13,6 @@
     <color name="colorPrimary">#4b64f1</color>
     <color name="colorPrimaryDark">#33408e</color>
     <color name="colorAccent">#e1316d</color>
+
+    <color name="lt_gray">#b6b6b6</color>
 </resources>

@@ -13,15 +13,4 @@
             android:defaultValue="true"
             android:key="hints"/>
     </PreferenceCategory>
-    <!--Добавь сюда списки с максимальными значениями-->
-    <!--<PreferenceCategory
-        android:title="@string/word_chain">
-        <ListPreference
-            android:entries="@array/word_chain_length"
-            android:entryValues="@array/entry_values"
-            android:key="w_ch_size"
-            android:title="@string/w_ch_size"
-            android:defaultValue="1"
-            android:summary="@string/set_max_size" />
-    </PreferenceCategory> список для потомков :D-->
 </PreferenceScreen>

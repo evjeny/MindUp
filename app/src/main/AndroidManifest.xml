@@ -31,7 +31,8 @@
         <activity android:name=".CutoutsThreeInfo" />
         <activity android:name=".Colors" android:label="@string/colors" />
         <activity android:name=".PiActivity" android:label="@string/pi"/>
-        <activity android:name=".Graphs"/>
+        <activity android:name=".Graphs" android:label="@string/graphs"/>
+        <activity android:name=".MATwo" android:label="@string/ma_two"/>
     </application>
 
 </manifest>

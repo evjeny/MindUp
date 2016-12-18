@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TextCreator</string>
+    <string name="space">В @year году космические путешественники нашли @color_planet планету
+    @planet_name возле @color_star звезды @star_name.\nГруппа из @men_count мужчин и
+    @women_count женщин направилась к планете на @spaceship_count космических кораблях.
+    В группе находились космический инженер @engineer_class класса @engineer_name,
+    доктор @doctor_class класса @doctor_name и химик @chemist_class класса @chemist_name.\n
+    После @days_count дней исследований группа не смогла выйти на свзяь с капитаном основного
+    корабля @cap_name. К счастью, космический инженер смог связаться с капитаном соседней
+    экспедиции @saver_name, и все путешественники были спасены.</string>
+    <string-array name="color_list">
+        <item>Белый</item>
+        <item>Красный</item>
+        <item>Розовый</item>
+        <item>Голубой</item>
+        <item>Желтый</item>
+        <item>Оранжевый</item>
+    </string-array>
+    <string-array name="planet_color_text">
+        <item>Белую</item>
+        <item>Красную</item>
+        <item>Розовую</item>
+        <item>Голубую</item>
+        <item>Желтую</item>
+        <item>Оранжевую</item>
+    </string-array>
+    <string-array name="star_color_text">
+        <item>Белой</item>
+        <item>Красной</item>
+        <item>Розовой</item>
+        <item>Голубой</item>
+        <item>Желтой</item>
+        <item>Оранжевой</item>
+    </string-array>
+    <string-array name="names">
+        <item>Василий</item>
+        <item>Анатолий</item>
+        <item>Генадий</item>
+        <item>Валерий</item>
+        <item>Пётр</item>
+        <item>Иннокентий</item>
+        <item>R2D2</item>
+        <item>Эдуард</item>
+        <item>Андрей</item>
+        <item>Алексей</item>
+    </string-array>
+    <string-array name="caps_names">
+        <item>Василием</item>
+        <item>Анатолием</item>
+        <item>Генадием</item>
+        <item>Валерием</item>
+        <item>Пётром</item>
+        <item>Иннокентием</item>
+        <item>R2D2</item>
+        <item>Эдуардом</item>
+        <item>Андреем</item>
+        <item>Алексеем</item>
+    </string-array>
+</resources>

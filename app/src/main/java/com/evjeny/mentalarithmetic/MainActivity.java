@@ -15,7 +15,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
     private TextView last;
     private DialogShower ds;
-    private String[][] results = new String[10][2];
+    private String[][] results = new String[20][2];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.cutouts_two)+n+t+results[6][0]+n+f+results[6][1]+n+n+
         getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+n+
         getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1]+n+n+
-        getString(R.string.pi)+n+t+results[9][0]+"/200";
+        getString(R.string.pi)+n+t+results[9][0]+"/200"+n+n+
+        getString(R.string.ma_two)+n+t+results[10][0]+n+f+results[10][1];
         String path = Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
         ds.showDialogWithOneButton(getString(R.string.restart),
         getString(R.string.saved_as)+path, getString(R.string.ok), R.drawable.info);
@@ -111,8 +112,14 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(colors, 9);
     }
     public void pi(View v) {
+        //10
         Intent pi = new Intent(this, PiActivity.class);
         startActivityForResult(pi, 10);
+    }
+    public void ma_two(View v) {
+        //11
+        Intent ma_two = new Intent(this, MATwo.class);
+        startActivityForResult(ma_two,11);
     }
     public void graphs(View v) {
         Intent graphs = new Intent(this, Graphs.class);
@@ -252,6 +259,16 @@ public class MainActivity extends AppCompatActivity {
                     results[9][1] = String.valueOf(todo[1]);
                 }
                 break;
+            case 11:
+                if(resultCode==RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.ma_two)+"\n"+
+                            getString(R.string.tru)+": "+todo[0]+"\n"+
+                            getString(R.string.fals)+": "+todo[1]);
+                    results[10][0] = String.valueOf(todo[0]);
+                    results[10][1] = String.valueOf(todo[1]);
+                }
         }
     }
 

@@ -20,13 +20,12 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|phone"
+        android:digits="0123456789"
         android:ems="10"
         android:id="@+id/piet"
         android:layout_gravity="center_horizontal"
         android:layout_weight="1"
-        android:scrollHorizontally="false"
-        android:scrollbars="vertical"
         android:gravity="top|start"
         android:maxLength="200" />
     <Button
