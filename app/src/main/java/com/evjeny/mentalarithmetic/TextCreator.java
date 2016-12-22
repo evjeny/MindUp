@@ -1,4 +1,4 @@
-package com.evjeny.textcreator;
+package com.evjeny.mentalarithmetic;
 
 import android.content.Context;
 import android.content.res.Resources;

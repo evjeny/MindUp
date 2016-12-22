@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MindUp</string>
     <string name="ma">Устный счет</string>
     <string name="result">Результат</string>
     <string name="next">Вперёд</string>
@@ -52,4 +51,67 @@
     <string name="pi">Число Пи</string>
     <string name="graphs">Графики</string>
     <string name="ma_two">Устный счёт 2</string>
+
+    <!--Начало ужасного кода-->
+    <string name="space">В @year году космические путешественники нашли @color_planet планету
+    @planet_name возле @color_star звезды @star_name.\nГруппа из @men_count мужчин и
+    @women_count женщин направилась к планете на @spaceship_count космических кораблях.
+    В группе находились космический инженер @engineer_class класса @engineer_name,
+    доктор @doctor_class класса @doctor_name и химик @chemist_class класса @chemist_name.\n
+    После @days_count дней исследований группа не смогла выйти на свзяь с капитаном основного
+    корабля @cap_name. К счастью, космический инженер смог связаться с капитаном соседней
+    экспедиции @saver_name, и все путешественники были спасены.</string>
+    <string-array name="color_list">
+        <item>Белый</item>
+        <item>Красный</item>
+        <item>Розовый</item>
+        <item>Голубой</item>
+        <item>Желтый</item>
+        <item>Оранжевый</item>
+    </string-array>
+    <string-array name="planet_color_text">
+        <item>белую</item>
+        <item>красную</item>
+        <item>розовую</item>
+        <item>голубую</item>
+        <item>желтую</item>
+        <item>оранжевую</item>
+    </string-array>
+    <string-array name="star_color_text">
+        <item>белой</item>
+        <item>красной</item>
+        <item>розовой</item>
+        <item>голубой</item>
+        <item>желтой</item>
+        <item>оранжевой</item>
+    </string-array>
+    <string-array name="names">
+        <item>Василий</item>
+        <item>Анатолий</item>
+        <item>Генадий</item>
+        <item>Валерий</item>
+        <item>Пётр</item>
+        <item>Иннокентий</item>
+        <item>R2D2</item>
+        <item>Эдуард</item>
+        <item>Андрей</item>
+        <item>Алексей</item>
+    </string-array>
+    <string-array name="caps_names">
+        <item>Василием</item>
+        <item>Анатолием</item>
+        <item>Генадием</item>
+        <item>Валерием</item>
+        <item>Петром</item>
+        <item>Иннокентием</item>
+        <item>R2D2</item>
+        <item>Эдуардом</item>
+        <item>Андреем</item>
+        <item>Алексеем</item>
+    </string-array>
+    <string name="text">Текст</string>
+    <string name="text_info">Прочитайте текст и запомните всю инофрмацию наподобие имен, дат и т.д. После чтения ответьте на 10 вопросов.</string>
+    <string name="squares_one">Квадраты (11-55)</string>
+    <string name="squares_two">Квадраты (56-99)</string>
+    <!--Конец ужасного кода-->
 </resources>

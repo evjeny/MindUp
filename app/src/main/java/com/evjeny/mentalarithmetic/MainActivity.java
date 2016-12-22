@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
         String t = getString(R.string.tru)+": ",
                 f = getString(R.string.fals)+": ",
                 n = "\n";
-        String res = getString(R.string.ma)+n+t+results[0][0]+n+f+results[0][1]+n+
+        String res = getString(R.string.ma)+n+t+results[0][0]+n+f+results[0][1]+n+n+
+        getString(R.string.ma_two)+n+t+results[10][0]+n+f+results[10][1]+n+n+
+        getString(R.string.squares_one)+n+t+results[12][0]+n+f+results[12][1]+n+n+
+        getString(R.string.squares_two)+n+t+results[13][0]+n+f+results[13][1]+n+n+
         getString(R.string.logic)+n+t+results[1][0]+n+f+results[1][1]+n+n+
         getString(R.string.logic_two)+n+t+results[2][0]+n+f+results[2][1]+n+n+
         getString(R.string.logic_three)+n+t+results[3][0]+n+f+results[3][1]+n+n+
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.cutouts_three)+n+t+results[7][0]+n+f+results[7][1]+n+n+
         getString(R.string.colors)+n+t+results[8][0]+n+f+results[8][1]+n+n+
         getString(R.string.pi)+n+t+results[9][0]+"/200"+n+n+
-        getString(R.string.ma_two)+n+t+results[10][0]+n+f+results[10][1];
+        getString(R.string.text)+n+t+results[11][0]+n+f+results[11][1];
         String path = Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
         ds.showDialogWithOneButton(getString(R.string.restart),
         getString(R.string.saved_as)+path, getString(R.string.ok), R.drawable.info);
@@ -124,6 +127,22 @@ public class MainActivity extends AppCompatActivity {
     public void graphs(View v) {
         Intent graphs = new Intent(this, Graphs.class);
         startActivity(graphs);
+    }
+    public void text(View v) {
+        Intent text = new Intent(this, TextActivity.class);
+        startActivityForResult(text, 12);
+    }
+    public void squares_one(View view) {
+        Intent sq_one = new Intent(this, SquaresActivity.class);
+        sq_one.putExtra("title", getString(R.string.squares_one));
+        sq_one.putExtra("type",0);
+        startActivityForResult(sq_one,13);
+    }
+    public void squares_two(View view) {
+        Intent sq_two = new Intent(this, SquaresActivity.class);
+        sq_two.putExtra("title", getString(R.string.squares_two));
+        sq_two.putExtra("type",1);
+        startActivityForResult(sq_two, 14);
     }
 
     public void save(View v) {
@@ -268,6 +287,36 @@ public class MainActivity extends AppCompatActivity {
                             getString(R.string.fals)+": "+todo[1]);
                     results[10][0] = String.valueOf(todo[0]);
                     results[10][1] = String.valueOf(todo[1]);
+                }
+            case 12:
+                if(resultCode==RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.text)+"\n"+
+                            getString(R.string.tru)+": "+todo[0]+"\n"+
+                            getString(R.string.fals)+": "+todo[1]);
+                    results[11][0] = String.valueOf(todo[0]);
+                    results[11][1] = String.valueOf(todo[1]);
+                }
+            case 13:
+                if(resultCode==RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.squares_one)+"\n"+
+                            getString(R.string.tru)+": "+todo[0]+"\n"+
+                            getString(R.string.fals)+": "+todo[1]);
+                    results[12][0] = String.valueOf(todo[0]);
+                    results[12][1] = String.valueOf(todo[1]);
+                }
+            case 14:
+                if(resultCode==RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.squares_two)+"\n"+
+                            getString(R.string.tru)+": "+todo[0]+"\n"+
+                            getString(R.string.fals)+": "+todo[1]);
+                    results[13][0] = String.valueOf(todo[0]);
+                    results[13][1] = String.valueOf(todo[1]);
                 }
         }
     }

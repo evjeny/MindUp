@@ -33,6 +33,8 @@
         <activity android:name=".PiActivity" android:label="@string/pi"/>
         <activity android:name=".Graphs" android:label="@string/graphs"/>
         <activity android:name=".MATwo" android:label="@string/ma_two"/>
+        <activity android:name=".TextActivity" android:label="@string/text"/>
+        <activity android:name=".SquaresActivity"/>
     </application>
 
 </manifest>
