@@ -113,5 +113,8 @@
     <string name="text_info">Прочитайте текст и запомните всю инофрмацию наподобие имен, дат и т.д. После чтения ответьте на 10 вопросов.</string>
     <string name="squares_one">Квадраты (11-55)</string>
     <string name="squares_two">Квадраты (56-99)</string>
+    <string name="sq_sh">Квадрат Шульте</string>
+    <string name="next_num">Следующее число</string>
+    <string name="sq_sh_info">Последовательно нажмите на кнопки от 1 до 25.</string>
     <!--Конец ужасного кода-->
 </resources>

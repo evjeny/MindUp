@@ -113,5 +113,8 @@
     <string name="text_info">Read the text and remember all information like names, dates etc. After reading answer 10 questions.</string>
     <string name="squares_one">Squares (11-55)</string>
     <string name="squares_two">Squares (56-99)</string>
+    <string name="sq_sh">Schulte table</string>
+    <string name="next_num">Next number</string>
+    <string name="sq_sh_info">Consistently press buttons from 1 to 25.</string>
     <!--space-->
 </resources>

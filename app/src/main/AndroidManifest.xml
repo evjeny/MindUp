@@ -35,6 +35,7 @@
         <activity android:name=".MATwo" android:label="@string/ma_two"/>
         <activity android:name=".TextActivity" android:label="@string/text"/>
         <activity android:name=".SquaresActivity"/>
+        <activity android:name=".ShulteActivity" android:label="@string/sq_sh"/>
     </application>
 
 </manifest>

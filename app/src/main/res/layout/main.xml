@@ -140,6 +140,12 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/sq_sh"
+            android:onClick="sq_sh" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/colors"
             android:onClick="colors" />
 
