@@ -198,9 +198,9 @@ public class TextActivity extends AppCompatActivity {
                         result[result_count][4] = vo(random.nextInt(30)+2001);
                         break;
                     case 1:
-                        result[result_count][0] = "Какой цвет у планеты?";
+                        result[result_count][0] = "Какую нашли планету?";
                         result[result_count][1] = special_track.get(random_pos);
-                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.color_list),3);
+                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.planet_color_text),3);
                         result[result_count][2] = add_answers[0];
                         result[result_count][3] = add_answers[1];
                         result[result_count][4] = add_answers[2];
@@ -213,9 +213,10 @@ public class TextActivity extends AppCompatActivity {
                         result[result_count][4] = tc.generateRandomName();
                         break;
                     case 3:
-                        result[result_count][0] = "Какой цвет у звезды?";
+                        result[result_count][0] = "Возле какой звезды нашли планету?";
                         result[result_count][1] = special_track.get(random_pos);
-                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.color_list),3);
+                        add_answers = tc.getRandoms(getResources().
+                                getStringArray(R.array.star_color_text),3);
                         result[result_count][2] = add_answers[0];
                         result[result_count][3] = add_answers[1];
                         result[result_count][4] = add_answers[2];
@@ -301,17 +302,17 @@ public class TextActivity extends AppCompatActivity {
                         result[result_count][4] = vo(random.nextInt(10)+2);
                         break;
                     case 15:
-                        result[result_count][0] = "Какое имя у капитана основного корабля?";
+                        result[result_count][0] = "С кем группа не смогла выйти на связь?";
                         result[result_count][1] = special_track.get(random_pos);
-                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.names),3);
+                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.caps_names),3);
                         result[result_count][2] = add_answers[0];
                         result[result_count][3] = add_answers[1];
                         result[result_count][4] = add_answers[2];
                         break;
                     case 16:
-                        result[result_count][0] = "Какое имя у капитана соседней экспедиции?";
+                        result[result_count][0] = "С кем связалась группа?";
                         result[result_count][1] = special_track.get(random_pos);
-                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.names),3);
+                        add_answers = tc.getRandoms(getResources().getStringArray(R.array.caps_names),3);
                         result[result_count][2] = add_answers[0];
                         result[result_count][3] = add_answers[1];
                         result[result_count][4] = add_answers[2];

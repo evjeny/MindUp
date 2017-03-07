@@ -109,6 +109,8 @@
         <item>Андреем</item>
         <item>Алексеем</item>
     </string-array>
+    <!--space-->
+
     <string name="text">Text</string>
     <string name="text_info">Read the text and remember all information like names, dates etc. After reading answer 10 questions.</string>
     <string name="squares_one">Squares (11-55)</string>
@@ -116,5 +118,17 @@
     <string name="sq_sh">Schulte table</string>
     <string name="next_num">Next number</string>
     <string name="sq_sh_info">Consistently press buttons from 1 to 25.</string>
-    <!--space-->
+
+    <string-array name="w_ch_sizes">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+    </string-array>
+    <string-array name="w_ch_sizes_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

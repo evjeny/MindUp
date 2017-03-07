@@ -6,7 +6,6 @@
     <application
         android:allowBackup="true"
         android:theme="@style/AppTheme"
-        android:screenOrientation="portrait"
         android:configChanges="keyboardHidden|orientation"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,25 +16,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Settings"/>
-        <activity android:name=".MA" android:label="@string/ma"/>
-        <activity android:name=".Logic" android:label="@string/logic"/>
-        <activity android:name=".LogicTwo" android:label="@string/logic_two"/>
-        <activity android:name=".LogicThree" android:label="@string/logic_three"/>
-        <activity android:name=".NumChain" android:label="@string/num_chain"/>
-        <activity android:name=".Cutouts" android:label="@string/cutouts"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Settings" />
+        <activity android:name=".MA" android:label="@string/ma" android:screenOrientation="portrait"/>
+        <activity android:name=".Logic" android:label="@string/logic" android:screenOrientation="portrait"/>
+        <activity android:name=".LogicTwo" android:label="@string/logic_two" android:screenOrientation="portrait"/>
+        <activity android:name=".LogicThree" android:label="@string/logic_three" android:screenOrientation="portrait"/>
+        <activity android:name=".NumChain" android:label="@string/num_chain" android:screenOrientation="portrait"/>
+        <activity android:name=".Cutouts" android:label="@string/cutouts" android:screenOrientation="portrait"/>
         <activity android:name=".CutoutsTwo" android:label="@string/cutouts_two"/>
-        <activity android:name=".WordChain" android:label="@string/word_chain"/>
-        <activity android:name=".CutoutsThree" android:label="@string/cutouts_three" />
-        <activity android:name=".CutoutsThreeInfo" />
-        <activity android:name=".Colors" android:label="@string/colors" />
-        <activity android:name=".PiActivity" android:label="@string/pi"/>
-        <activity android:name=".Graphs" android:label="@string/graphs"/>
-        <activity android:name=".MATwo" android:label="@string/ma_two"/>
-        <activity android:name=".TextActivity" android:label="@string/text"/>
-        <activity android:name=".SquaresActivity"/>
-        <activity android:name=".ShulteActivity" android:label="@string/sq_sh"/>
+        <activity android:name=".WordChain" android:label="@string/word_chain" android:screenOrientation="portrait"/>
+        <activity android:name=".CutoutsThree" android:label="@string/cutouts_three"/>
+        <activity android:name=".CutoutsThreeInfo" android:screenOrientation="portrait"/>
+        <activity android:name=".Colors" android:label="@string/colors"/>
+        <activity android:name=".PiActivity" android:label="@string/pi" android:screenOrientation="portrait"/>
+        <activity android:name=".Graphs" android:label="@string/graphs" android:screenOrientation="portrait"/>
+        <activity android:name=".MATwo" android:label="@string/ma_two" android:screenOrientation="portrait"/>
+        <activity android:name=".TextActivity" android:label="@string/text" android:screenOrientation="portrait"/>
+        <activity android:name=".SquaresActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ShulteActivity" android:label="@string/sq_sh" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

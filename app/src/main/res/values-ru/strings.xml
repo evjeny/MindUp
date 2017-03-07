@@ -39,7 +39,7 @@
     <string name="orange">Оранжевый</string>
     <string name="red">Красный</string>
     <string name="white">Белый</string>
-    <string name="yellow">Желтый</string>
+    <string name="yellow">Жёлтый</string>
     <string name="colors_info">Выберете цвет текста, но не его значение.</string>
     <string name="save_results">Сохранить результаты</string>
     <string name="save_results_to_dir">Сохранять результаты в /корневая_папка/MindUp</string>
@@ -109,6 +109,8 @@
         <item>Андреем</item>
         <item>Алексеем</item>
     </string-array>
+    <!--Конец ужасного кода-->
+
     <string name="text">Текст</string>
     <string name="text_info">Прочитайте текст и запомните всю инофрмацию наподобие имен, дат и т.д. После чтения ответьте на 10 вопросов.</string>
     <string name="squares_one">Квадраты (11-55)</string>
@@ -116,5 +118,5 @@
     <string name="sq_sh">Квадрат Шульте</string>
     <string name="next_num">Следующее число</string>
     <string name="sq_sh_info">Последовательно нажмите на кнопки от 1 до 25.</string>
-    <!--Конец ужасного кода-->
+
 </resources>

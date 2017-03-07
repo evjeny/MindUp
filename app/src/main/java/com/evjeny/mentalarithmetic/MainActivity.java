@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if (new File("/sdcard/cutouts/additional.zip").exists()) {
             cu_three_button.setEnabled(true);
         }
+
     }
 
     private void clear_results() {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.logic_two) + n + t + results[2][0] + n + f + results[2][1] + n + n +
                 getString(R.string.logic_three) + n + t + results[3][0] + n + f + results[3][1] + n + n +
                 getString(R.string.num_chain) + n + t + results[4][0] + "/50" + n + n +
+                getString(R.string.word_chain) + n + t + results[15][0] + n + f + results[15][1] + n + n +
                 getString(R.string.cutouts) + n + t + results[5][0] + n + f + results[5][1] + n + n +
                 getString(R.string.cutouts_two) + n + t + results[6][0] + n + f + results[6][1] + n + n +
                 getString(R.string.cutouts_three) + n + t + results[7][0] + n + f + results[7][1] + n + n +
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void word_chain(View v) {
         Intent words = new Intent(this, WordChain.class);
-        startActivity(words);
+        startActivityForResult(words, 16);
     }
 
     public void colors(View v) {
@@ -315,16 +317,19 @@ public class MainActivity extends AppCompatActivity {
                     results[10][0] = String.valueOf(todo[0]);
                     results[10][1] = String.valueOf(todo[1]);
                 }
+                break;
             case 12:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
+                    last.setText("");
                     last.setText(getString(R.string.text) + "\n" +
                             getString(R.string.tru) + ": " + todo[0] + "\n" +
                             getString(R.string.fals) + ": " + todo[1]);
                     results[11][0] = String.valueOf(todo[0]);
                     results[11][1] = String.valueOf(todo[1]);
                 }
+                break;
             case 13:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
@@ -335,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
                     results[12][0] = String.valueOf(todo[0]);
                     results[12][1] = String.valueOf(todo[1]);
                 }
+                break;
             case 14:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
@@ -345,15 +351,28 @@ public class MainActivity extends AppCompatActivity {
                     results[13][0] = String.valueOf(todo[0]);
                     results[13][1] = String.valueOf(todo[1]);
                 }
+                break;
             case 15:
                 if (resultCode == RESULT_OK) {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
                     last.setText(getString(R.string.sq_sh) + "\n" +
-                            getString(R.string.tru) + ": " + todo[0] + "/" + todo[1]);
+                            getString(R.string.tru) + ": " + todo[0] + "/25");
                     results[14][0] = String.valueOf(todo[0]);
                     results[14][1] = String.valueOf(todo[1]);
                 }
+                break;
+            case 16:
+                if (resultCode == RESULT_OK) {
+                    Bundle bundle = data.getExtras();
+                    int[] todo = bundle.getIntArray("result");
+                    last.setText(getString(R.string.word_chain) + "\n" +
+                            getString(R.string.tru) + ": " + todo[0] + "\n" +
+                            getString(R.string.fals) + ": " + todo[1]);
+                    results[15][0] = String.valueOf(todo[0]);
+                    results[15][1] = String.valueOf(todo[1]);
+                }
+                break;
         }
     }
 

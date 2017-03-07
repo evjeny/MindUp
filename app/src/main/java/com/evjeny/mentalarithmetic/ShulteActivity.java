@@ -1,11 +1,11 @@
 package com.evjeny.mentalarithmetic;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
@@ -23,7 +23,7 @@ import java.util.Random;
  * Created by Evjeny on 23.12.2016.
  * at 9:10
  */
-public class ShulteActivity extends Activity {
+public class ShulteActivity extends AppCompatActivity {
     private TableLayout tableLayout;
     private TextView nn;
     private ProgressBar pb;
@@ -79,6 +79,9 @@ public class ShulteActivity extends Activity {
                 int current = j+columns*i;
                 buttons[current] = new Button(this);
                 buttons[current].setOnClickListener(listener);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams();
+                lp.weight = 1;
+                buttons[i].setLayoutParams(lp);
                 tableRow.addView(buttons[current],j);
 
             }

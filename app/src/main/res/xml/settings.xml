@@ -12,5 +12,10 @@
             android:summary="@string/show_hints"
             android:defaultValue="true"
             android:key="hints"/>
+        <ListPreference
+            android:title="@string/w_ch_size"
+            android:entries="@array/w_ch_sizes"
+            android:entryValues="@array/w_ch_sizes_values"
+            android:key="w_ch_size"/>
     </PreferenceCategory>
 </PreferenceScreen>
