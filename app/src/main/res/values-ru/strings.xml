@@ -25,7 +25,7 @@
     <string name="cu_three_info_po">Скачайте файл "additional.zip" из Dropbox - https://www.dropbox.com/s/v1y624w07b6c2mj/additional.zip?dl=1</string>
     <string name="cu_three_info_pt">Поместите его в папку </string>
     <string name="cu_three_info_pth">и перезапустите приложение.</string>
-    <string name="cu_info">Выберете часть, подходящую к главному изображению, из 6 вариантов.</string>
+    <string name="cu_info">Выберите часть, подходящую к главному изображению, из 6 вариантов.</string>
     <string name="ma_info">Найдите ответ на пример и вставьте его в текстовое поле.</string>
     <string name="nc_info">Запомните все числа и вставьте их в текстовое поле.</string>
     <string name="app">Приложение</string>
