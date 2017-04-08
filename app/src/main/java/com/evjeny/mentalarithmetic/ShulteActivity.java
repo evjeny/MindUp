@@ -156,7 +156,7 @@ public class ShulteActivity extends AppCompatActivity {
             tru = last;
         }
         Bundle conData = new Bundle();
-        conData.putIntArray("result", new int[] {tru, 25});
+        conData.putIntArray("result", new int[] {tru, (25-tru)});
         Intent intent = new Intent();
         intent.putExtras(conData);
         setResult(RESULT_OK, intent);

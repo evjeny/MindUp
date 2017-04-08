@@ -152,11 +152,10 @@ public class NumChain extends AppCompatActivity {
     }
     private void finishWithResult()
     {
-        int falser = 50-match_count;
         String tos = getString(R.string.tru) + ":" + match_count+"/50";
         Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
         Bundle conData = new Bundle();
-        conData.putIntArray("result", new int[] {match_count, falser});
+        conData.putIntArray("result", new int[] {match_count, (50-match_count)});
         Intent intent = new Intent();
         intent.putExtras(conData);
         setResult(RESULT_OK, intent);

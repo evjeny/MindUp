@@ -118,5 +118,9 @@
     <string name="sq_sh">Квадрат Шульте</string>
     <string name="next_num">Следующее число</string>
     <string name="sq_sh_info">Последовательно нажмите на кнопки от 1 до 25.</string>
+    <string name="error">Ошибка</string>
+    <string name="results">Результаты</string>
+    <string name="all">Общие</string>
+    <string name="current_results">Текущие результаты</string>
 
 </resources>

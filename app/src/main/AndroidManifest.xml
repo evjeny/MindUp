@@ -35,6 +35,7 @@
         <activity android:name=".TextActivity" android:label="@string/text" android:screenOrientation="portrait"/>
         <activity android:name=".SquaresActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ShulteActivity" android:label="@string/sq_sh" android:screenOrientation="portrait"/>
+        <activity android:name=".ResultsActivity" android:label="@string/results"/>
     </application>
 
 </manifest>

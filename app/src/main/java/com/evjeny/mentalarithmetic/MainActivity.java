@@ -3,19 +3,45 @@ package com.evjeny.mentalarithmetic;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.JsonWriter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.io.StreamCorruptedException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private TextView last;
     private DialogShower ds;
     private String[][] results = new String[20][2];
+    private int[] names = {R.string.ma,
+            R.string.logic,
+            R.string.logic_two,
+            R.string.logic_three,
+            R.string.num_chain,
+            R.string.cutouts,
+            R.string.cutouts_two,
+            R.string.cutouts_three,
+            R.string.colors,
+            R.string.pi,
+            R.string.ma_two,
+            R.string.text,
+            R.string.squares_one,
+            R.string.squares_two,
+            R.string.sq_sh,
+            R.string.word_chain};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         clear_results();
         Button cu_three_button = (Button) findViewById(R.id.cu_three_button);
         cu_three_button.setEnabled(false);
-        if (new File("/sdcard/cutouts/additional.zip").exists()) {
+        String path = Environment.getExternalStorageDirectory().getPath();
+        if (new File(path,"cutouts/additional.zip").exists()) {
             cu_three_button.setEnabled(true);
         }
 
@@ -39,31 +66,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void writeToMindUp() {
-        String t = getString(R.string.tru) + ": ",
-                f = getString(R.string.fals) + ": ",
-                n = "\n";
-
-        String res = getString(R.string.ma) + n + t + results[0][0] + n + f + results[0][1] + n + n +
-                getString(R.string.ma_two) + n + t + results[10][0] + n + f + results[10][1] + n + n +
-                getString(R.string.squares_one) + n + t + results[12][0] + n + f + results[12][1] + n + n +
-                getString(R.string.squares_two) + n + t + results[13][0] + n + f + results[13][1] + n + n +
-                getString(R.string.logic) + n + t + results[1][0] + n + f + results[1][1] + n + n +
-                getString(R.string.logic_two) + n + t + results[2][0] + n + f + results[2][1] + n + n +
-                getString(R.string.logic_three) + n + t + results[3][0] + n + f + results[3][1] + n + n +
-                getString(R.string.num_chain) + n + t + results[4][0] + "/50" + n + n +
-                getString(R.string.word_chain) + n + t + results[15][0] + n + f + results[15][1] + n + n +
-                getString(R.string.cutouts) + n + t + results[5][0] + n + f + results[5][1] + n + n +
-                getString(R.string.cutouts_two) + n + t + results[6][0] + n + f + results[6][1] + n + n +
-                getString(R.string.cutouts_three) + n + t + results[7][0] + n + f + results[7][1] + n + n +
-                getString(R.string.sq_sh) + n + t + results[14][0] + "/" + results[14][1] + n + n +
-                getString(R.string.colors) + n + t + results[8][0] + n + f + results[8][1] + n + n +
-                getString(R.string.pi) + n + t + results[9][0] + "/200" + n + n +
-                getString(R.string.text) + n + t + results[11][0] + n + f + results[11][1];
-        String path = Saver.saveToMindUpWithCurrentDate("results", res.getBytes());
+    private void writeJSON() throws JSONException {
+        String json_text = getJSON(getDate(), names, results);
+        String path = Saver.saveToMindUpWithCurrentDate("res_",json_text.getBytes(), ".json");
         ds.showDialogWithOneButton(getString(R.string.restart),
                 getString(R.string.saved_as) + path, getString(R.string.ok), R.drawable.info);
     }
+
+    private String getJSON(String _date, int[] _names, String[][] _results) throws JSONException {
+        JSONObject out = new JSONObject();
+        out.put("date", _date);
+
+        JSONArray res = new JSONArray();
+        for(int i = 0; i<_names.length; i++) {
+            JSONObject curr = new JSONObject();
+            curr.put("name", _names[i]);
+            curr.put("true", Integer.valueOf(_results[i][0]));
+            curr.put("false", Integer.valueOf(_results[i][1]));
+            res.put(curr);
+        }
+        out.put("results", res);
+
+        return out.toString();
+    }
+
+    private String getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd_hh:mm:ss");
+        return sdf.format(new Date(System.currentTimeMillis()));
+    }
+
+    private String gs(int todo) {
+        return getString(todo);
+    }
+
 
     public void ma(View viw) {
         //1
@@ -175,7 +210,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void save(View v) {
-        writeToMindUp();
+        try {
+            writeJSON();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(this, gs(R.string.error)+":\n"+e.toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void results(View v) {
+        Intent ri = new Intent(this, ResultsActivity.class);
+        String json = "";
+        try {
+            json = getJSON(getDate(), names, results);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ri.putExtra("current", json);
+        startActivity(ri);
     }
 
     @Override
@@ -248,7 +300,8 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
                     last.setText(getString(R.string.num_chain) + "\n" +
-                            getString(R.string.tru) + ": " + todo[0] + "/50");
+                            getString(R.string.tru) + ": " + todo[0] + "\n" +
+                            getString(R.string.fals) + ": " + todo[1]);
                     results[4][0] = String.valueOf(todo[0]);
                     results[4][1] = String.valueOf(todo[1]);
                 }
@@ -302,7 +355,8 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
                     last.setText(getString(R.string.pi) + "\n" +
-                            getString(R.string.tru) + ": " + todo[0] + "/200");
+                            getString(R.string.tru) + ": " + todo[0] + "\n" +
+                            getString(R.string.fals) + ": " + todo[1]);
                     results[9][0] = String.valueOf(todo[0]);
                     results[9][1] = String.valueOf(todo[1]);
                 }
@@ -357,7 +411,8 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = data.getExtras();
                     int[] todo = bundle.getIntArray("result");
                     last.setText(getString(R.string.sq_sh) + "\n" +
-                            getString(R.string.tru) + ": " + todo[0] + "/25");
+                            getString(R.string.tru) + ": " + todo[0] + "\n" +
+                            getString(R.string.fals) + ": " + todo[1]);
                     results[14][0] = String.valueOf(todo[0]);
                     results[14][1] = String.valueOf(todo[1]);
                 }

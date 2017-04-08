@@ -131,4 +131,8 @@
         <item>3</item>
         <item>4</item>
     </string-array>
+    <string name="error">Error</string>
+    <string name="results">Results</string>
+    <string name="all">All</string>
+    <string name="current_results">Current results</string>
 </resources>

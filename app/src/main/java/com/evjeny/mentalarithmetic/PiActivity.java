@@ -66,11 +66,10 @@ public class PiActivity extends AppCompatActivity {
     }
     private void finishWithResult()
     {
-        int falser = 200;
         String tos = getString(R.string.tru) + ":" + match_count+"/200";
         Toast.makeText(getApplicationContext(), tos, Toast.LENGTH_LONG).show();
         Bundle conData = new Bundle();
-        conData.putIntArray("result", new int[] {match_count, falser});
+        conData.putIntArray("result", new int[] {match_count, (200-match_count)});
         Intent intent = new Intent();
         intent.putExtras(conData);
         setResult(RESULT_OK, intent);
