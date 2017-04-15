@@ -119,13 +119,13 @@
     <string name="next_num">Next number</string>
     <string name="sq_sh_info">Consistently press buttons from 1 to 25.</string>
 
-    <string-array name="w_ch_sizes">
+    <string-array name="w_ch_sizes" translatable="false">
         <item>10</item>
         <item>15</item>
         <item>20</item>
         <item>25</item>
     </string-array>
-    <string-array name="w_ch_sizes_values">
+    <string-array name="w_ch_sizes_values" translatable="false">
         <item>1</item>
         <item>2</item>
         <item>3</item>

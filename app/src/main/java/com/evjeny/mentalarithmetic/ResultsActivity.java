@@ -25,8 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Evjeny on 07.04.2017.
@@ -65,7 +63,7 @@ public class ResultsActivity extends AppCompatActivity {
     private void showDialog(String title, ArrayList<ArrayList<Integer>> items) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
-        ObjResAdapter adapter = new ObjResAdapter(this, items);
+        final ObjResAdapter adapter = new ObjResAdapter(this, items);
         builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -75,6 +73,7 @@ public class ResultsActivity extends AppCompatActivity {
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
             }
         });
         builder.show();

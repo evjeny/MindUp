@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -18,7 +19,7 @@ import java.util.Random;
  * Created by Evjeny on 16.12.2016.
  * at 20:58
  */
-public class MATwo extends Activity {
+public class MATwo extends AppCompatActivity {
     private EditText result;
     private ProgressBar pb;
     private TextView nums, expr;

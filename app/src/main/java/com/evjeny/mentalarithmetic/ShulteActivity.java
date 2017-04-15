@@ -76,14 +76,13 @@ public class ShulteActivity extends AppCompatActivity {
             tableRow.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT));
             for(int j = 0; j<columns; j++) {
-                int current = j+columns*i;
+                int current = j+rows*i;
                 buttons[current] = new Button(this);
                 buttons[current].setOnClickListener(listener);
                 TableRow.LayoutParams lp = new TableRow.LayoutParams();
                 lp.weight = 1;
-                buttons[i].setLayoutParams(lp);
+                buttons[current].setLayoutParams(lp);
                 tableRow.addView(buttons[current],j);
-
             }
             tableLayout.addView(tableRow,i);
         }
